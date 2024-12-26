@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/26 13:21:39 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/26 19:03:11 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@
 # include <X11/Xlib.h>
 # include <math.h>
 
+typedef struct s_player
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	time;
+}	t_player;
+
 typedef struct s_map
 {
 	int	width;
@@ -39,14 +50,15 @@ typedef struct s_map
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*data;
-	int		bpp;
-	int		size_line;
-	int		endian;
-	t_map	map;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			size_line;
+	int			endian;
+	t_map		map;
+	t_player	player;
 }	t_game;
 
 typedef struct s_colorRGB
@@ -66,6 +78,7 @@ typedef struct s_colorRGB
 
 void	raycasting(t_game *game);
 void	put_pixel(t_game *game, int x, int y, int color);
+void	handle_movement(t_game *game, int keysym);
 
 	/*	UTILS	*/
 

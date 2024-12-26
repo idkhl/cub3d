@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:41 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/26 14:18:01 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/26 19:23:55 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape)
 		destroy(game);
-	// move(keysym, game);
+	handle_movement(game, keysym);
 	return (0);
 }
 
@@ -93,7 +93,7 @@ void	put_pixel(t_game *game, int x, int y, int color)
 		fprintf(stderr, "Error\nPixel out of bounds: (%d, %d)\n", x, y);
 		return ;
 	}
-	dst = game->data + (y * game->size_line + x * (game->bpp / 8));
+	dst = game->addr + (y * game->size_line + x * (game->bpp / 8));
 	*(unsigned int*)dst = color;
 }
 
@@ -127,10 +127,21 @@ int	init_image(t_game *game)
 	game->img = mlx_new_image(game->mlx, game->map.screen_w, game->map.screen_h);
 	if (!game->img)
 		return (printf("Error\nImage fail\n"), -1);
-	game->data = mlx_get_data_addr(game->img, &game->bpp, &game->size_line, &game->endian);
-	if (!game->data)
-		return (printf("Error\nData fail\n"), -1);
+	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->size_line, &game->endian);
+	if (!game->addr)
+		return (printf("Error\nData_addr fail\n"), -1);
 	return (0);
+}
+
+void	init_player(t_game *game)
+{
+	game->player.pos_x = 22.0;
+	game->player.pos_y = 12.0;
+	game->player.dir_x = -1.0;
+	game->player.dir_y = 0.0;
+	game->player.plane_x = 0.0;
+	game->player.plane_y = 0.66;
+	game->player.time = 0;
 }
 
 int	init_game(t_game *game)
@@ -142,8 +153,7 @@ int	init_game(t_game *game)
 		destroy(game);
 		return (-1);
 	}
-	// put_pixel(game, 5, 5, 0x00FF0000);
-	// mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	init_player(game);
 	return (0);
 }
 
@@ -153,9 +163,10 @@ int	main(void)
 
 	if (init_game(&game) == -1)
 		return (0);
-	raycasting(&game);
+	// raycasting(&game);
 	mlx_hook(game.win, KeyPress, KeyPressMask, &handle_keypress, &game);
 	mlx_hook(game.win, 17, 0, &destroy, &game);
+	mlx_loop_hook(game.mlx, raycasting, &game);
 	mlx_loop(game.mlx);
 	mlx_destroy_display(game.mlx);
 }

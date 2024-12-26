@@ -6,7 +6,7 @@
 #    By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/24 17:14:00 by idakhlao          #+#    #+#              #
-#    Updated: 2024/12/26 13:07:11 by idakhlao         ###   ########.fr        #
+#    Updated: 2024/12/26 16:51:16 by idakhlao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): start $(OBJS)
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) -o $(NAME) $(MINILIB)
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) -o $(NAME) $(MINILIB) -lm
 
 start :
 	make -C minilibx-linux
