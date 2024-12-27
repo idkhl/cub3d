@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/26 19:03:11 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/27 15:30:13 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ typedef struct s_player
 	double	plane_x;
 	double	plane_y;
 	double	time;
+	int		up;
+	int		down;
+	int		left;
+	int		right;
+	int		r_left;
+	int		r_right;
 }	t_player;
 
 typedef struct s_map
@@ -61,24 +67,11 @@ typedef struct s_game
 	t_player	player;
 }	t_game;
 
-typedef struct s_colorRGB
-{
-	int	red;
-	int	green;
-	int	blue;
-}	ColorRGB;
-
-#define RGB_Red    (ColorRGB){255, 0, 0}
-#define RGB_Green  (ColorRGB){0, 255, 0}
-#define RGB_Blue   (ColorRGB){0, 0, 255}
-#define RGB_White  (ColorRGB){255, 255, 255}
-#define RGB_Yellow (ColorRGB){255, 255, 0}
-
 	/*	RAYCASTING	*/
 
-void	raycasting(t_game *game);
+int		raycasting(t_game *game);
 void	put_pixel(t_game *game, int x, int y, int color);
-void	handle_movement(t_game *game, int keysym);
+void	handle_movement(t_game *game);
 
 	/*	UTILS	*/
 

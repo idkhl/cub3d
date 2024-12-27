@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:41 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/26 19:23:55 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/27 16:33:49 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,18 @@ int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape)
 		destroy(game);
-	handle_movement(game, keysym);
+	if (keysym == XK_w)
+		game->player.up = 1;
+	if (keysym == XK_s)
+		game->player.down = 1;
+	if (keysym == XK_a)
+		game->player.left = 1;
+	if (keysym == XK_d)
+		game->player.right = 1;
+	if (keysym == XK_Left)
+		game->player.r_left = 1;
+	if (keysym == XK_Right)
+		game->player.r_right = 1;
 	return (0);
 }
 
@@ -142,6 +153,12 @@ void	init_player(t_game *game)
 	game->player.plane_x = 0.0;
 	game->player.plane_y = 0.66;
 	game->player.time = 0;
+	game->player.up = 0;
+	game->player.down = 0;
+	game->player.left = 0;
+	game->player.right = 0;
+	game->player.r_left = 0;
+	game->player.r_right = 0;
 }
 
 int	init_game(t_game *game)
@@ -163,7 +180,6 @@ int	main(void)
 
 	if (init_game(&game) == -1)
 		return (0);
-	// raycasting(&game);
 	mlx_hook(game.win, KeyPress, KeyPressMask, &handle_keypress, &game);
 	mlx_hook(game.win, 17, 0, &destroy, &game);
 	mlx_loop_hook(game.mlx, raycasting, &game);
