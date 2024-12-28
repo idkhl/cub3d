@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:41 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/27 16:33:49 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:31:24 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int	destroy(t_game *game)
 {
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
+	if (game->mlx)
+		mlx_destroy_display(game->mlx);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
 	exit(EXIT_FAILURE);
 }
 
@@ -113,8 +115,6 @@ int	init_map(t_game *game)
 	ft_memset(&game->map, 0, sizeof(t_map));
 	game->map.width = 24;
 	game->map.height = 24;
-	game->map.texture_w = 64;
-	game->map.texture_h = 64;
 	game->map.screen_w = 640;
 	game->map.screen_h = 480;
 	game->map.map = allocate_map(&game->map);

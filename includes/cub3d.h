@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/27 15:30:13 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/28 15:09:43 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,19 @@ typedef struct s_map
 	int	height;
 	int	screen_w;
 	int	screen_h;
-	int	texture_w;
-	int	texture_h;
 	int	**map;
 }	t_map;
+
+typedef struct s_texture
+{
+	int		texture_w;
+	int		texture_h;
+	void	*img_data;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	char	*addr;
+}	t_texture;
 
 typedef struct s_game
 {
@@ -65,6 +74,7 @@ typedef struct s_game
 	int			endian;
 	t_map		map;
 	t_player	player;
+	t_texture	textures[4];
 }	t_game;
 
 	/*	RAYCASTING	*/

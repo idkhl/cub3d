@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:58:38 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/27 16:46:15 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:28:08 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	floor_ceiling(t_game *game)
 		j = 0;
 		while (j < game->map.screen_w)
 		{
-			put_pixel(game, j, i, rgb(218, 218, 218));
+			put_pixel(game, j, i, rgb(183, 225, 253));
 			j++;
 		}
 		i++;
@@ -49,7 +49,7 @@ void	floor_ceiling(t_game *game)
 		j = 0;
 		while (j < game->map.screen_w)
 		{
-			put_pixel(game, j, i, rgb(119, 119, 119));
+			put_pixel(game, j, i, rgb(61, 61, 61));
 			j++;
 		}
 		i++;
@@ -68,8 +68,8 @@ void	reset_player_move(t_game *game)
 
 void	handle_movement(t_game *game)
 {
-	double movespeed = 1;
-	double rotspeed = 0.25;
+	double movespeed = 0.08;
+	double rotspeed = 0.08;
 	if (game->player.up == 1)
 	{
 		if (game->map.map[(int)(game->player.pos_x + game->player.dir_x * movespeed)][(int)(game->player.pos_y)] == 0)
@@ -124,6 +124,33 @@ void	handle_movement(t_game *game)
 	}
 }
 
+void	init_textures(t_game *game)
+{
+	game->textures->texture_h = 64;
+	game->textures->texture_w = 64;
+	game->textures[0].img_data = mlx_xpm_file_to_image(game->mlx, "textures/bluestone.xpm", &game->textures[0].texture_w, &game->textures[0].texture_h);
+	game->textures[1].img_data = mlx_xpm_file_to_image(game->mlx, "textures/eagle.xpm", &game->textures[1].texture_w, &game->textures[1].texture_h);
+	game->textures[2].img_data = mlx_xpm_file_to_image(game->mlx, "textures/purplestone.xpm", &game->textures[2].texture_w, &game->textures[2].texture_h);
+	game->textures[3].img_data = mlx_xpm_file_to_image(game->mlx, "textures/redbrick.xpm", &game->textures[3].texture_w, &game->textures[3].texture_h);
+	int i = 0;
+	while (i < 4)
+	{
+		if (game->textures[i].img_data == NULL)
+		{
+			printf("Error loading texture %d\n", i);
+			exit(1);
+		}
+		game->textures[i].addr = mlx_get_data_addr(game->textures[i].img_data, &game->textures[i].bpp, &game->textures[i].size_line, &game->textures[i].endian);
+		i++;
+	}
+}
+
+// void draw_textures(t_game *game, int x)
+// {
+// 	int	tex_x;
+// 	int	tex_y;
+// }
+
 void get_rays(t_game *game, int x, int w)
 {
 	int		h = game->map.screen_h;
@@ -176,7 +203,7 @@ void get_rays(t_game *game, int x, int w)
 		stepY = 1;
 		sideDistY = (mapY + 1.0 - game->player.pos_y) * deltaDistY;
 	}
-	while(hit == 0)
+	while (hit == 0)
 	{
 		if (sideDistX < sideDistY)
 		{
@@ -198,12 +225,46 @@ void get_rays(t_game *game, int x, int w)
 	else
 		perpWallDist = (sideDistY - deltaDistY);
 	int lineHeight = (int)(h / perpWallDist);
+
+	// int pitch = 100;
+
 	int drawStart = -lineHeight / 2 + h / 2;
 	if (drawStart < 0)
 		drawStart = 0;
 	int drawEnd = lineHeight / 2 + h / 2;
 	if (drawEnd >= h)
 		drawEnd = h - 1;
+
+	// int texNum = game->map.map[mapX][mapY] - 1;
+	// double wall_x;
+	// if (side == 0)
+	// 	wall_x = game->player.pos_y + perpWallDist * rayDirY;
+	// else
+	// 	wall_x = game->player.pos_x + perpWallDist * rayDirX;
+	// wall_x -= floor(wall_x);
+	// int tex_x = (int)(wall_x * (double)game->textures->texture_w);
+	// if (side == 0 && rayDirX > 0)
+	// 	tex_x = game->textures->texture_w - tex_x - 1;
+	// if (side == 1 && rayDirY < 0)
+	// 	tex_x = game->textures->texture_w - tex_x - 1;
+
+	// double step = 1.0 * game->textures->texture_h / lineHeight;
+
+	// double tex_pos = (drawStart - pitch - h / 2 + lineHeight / 2) * step;
+	// int i = drawStart;
+	// while (i < drawEnd)
+	// {
+	// 	int tex_y = (int)tex_pos & (game->textures->texture_h - 1);
+	// 	tex_pos += step;
+	// }
+
+
+	// draw_textures(game, x);
+	// int	texture_x;
+	// int	texture_y;
+	// double	tex_pos;
+	// texture_x = (int)(game->player.)
+
 
 	int color = 0;
 
@@ -219,7 +280,7 @@ void get_rays(t_game *game, int x, int w)
 		color = rgb(255, 255, 0);
 	if (side == 1)
 	{
-		color -= 15;
+		color /= 1.5;
 	}
 	vertical_line(game, x, drawStart, drawEnd, color);
 }
@@ -229,6 +290,7 @@ int	raycasting(t_game *game)
 	int		w = game->map.screen_w;
 
 	floor_ceiling(game);
+	// init_textures(game);
 	int x = 0;
 	while (x < w)
 	{
