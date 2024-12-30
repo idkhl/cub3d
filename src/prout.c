@@ -6,18 +6,31 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:41 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/28 18:31:24 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/30 15:47:59 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+void	destroy_images(t_game *game)
+{
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (game->textures[i].img_data)
+			mlx_destroy_image(game->mlx, game->textures[i].img_data);
+		i++;
+	}
+}
+
 int	destroy(t_game *game)
 {
-	if (game->mlx)
-		mlx_destroy_display(game->mlx);
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
+	destroy_images(game);
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
 	exit(EXIT_FAILURE);
 }
 
@@ -45,13 +58,13 @@ int	**allocate_map(t_map *map)
 	int	i;
 	int	**nmap;
 
-	nmap = malloc(map->height * sizeof(int *));
+	nmap = malloc(map->map_h * sizeof(int *));
 	if (!nmap)
 		return (NULL);
 	i = 0;
-	while (i < map->height)
+	while (i < map->map_h)
 	{
-		nmap[i] = malloc(map->width * sizeof(int));
+		nmap[i] = malloc(map->map_w * sizeof(int));
 		if (!nmap[i])
 		{
 			while (i > 0)
@@ -92,8 +105,8 @@ void	fill_map(t_map *map)
 		{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 	};
-	for (int y = 0; y < map->height; y++)
-		for (int x = 0; x < map->width; x++)
+	for (int y = 0; y < map->map_h; y++)
+		for (int x = 0; x < map->map_w; x++)
 			map->map[y][x] = temp_map[y][x];
 }
 
@@ -101,7 +114,7 @@ void	put_pixel(t_game *game, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || x >= game->map.screen_w || y < 0 || y >= game->map.screen_h)
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
 	{
 		fprintf(stderr, "Error\nPixel out of bounds: (%d, %d)\n", x, y);
 		return ;
@@ -113,10 +126,10 @@ void	put_pixel(t_game *game, int x, int y, int color)
 int	init_map(t_game *game)
 {
 	ft_memset(&game->map, 0, sizeof(t_map));
-	game->map.width = 24;
-	game->map.height = 24;
-	game->map.screen_w = 640;
-	game->map.screen_h = 480;
+	game->map.map_w = 24;
+	game->map.map_h = 24;
+	// WIDTH = 640;
+	// HEIGHT = 480;
 	game->map.map = allocate_map(&game->map);
 	if (!game->map.map)
 	{
@@ -132,10 +145,10 @@ int	init_image(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (printf("Error\nMLX failed\n"), -1);
-	game->win = mlx_new_window(game->mlx, game->map.screen_w, game->map.screen_h, "cub3d");
+	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cub3d");
 	if (!game->win)
 		return (printf("Error\nWindow fail\n"), -1);
-	game->img = mlx_new_image(game->mlx, game->map.screen_w, game->map.screen_h);
+	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (!game->img)
 		return (printf("Error\nImage fail\n"), -1);
 	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->size_line, &game->endian);

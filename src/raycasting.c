@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:58:38 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/28 18:28:08 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/30 17:03:12 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	rgb(int r, int g, int b)
 
 void	vertical_line(t_game *game, int x, int drawStart, int drawEnd, int color)
 {
-	if (x > game->map.screen_w || x < 0)
+	if (x > WIDTH || x < 0)
 		return ;
 	while (drawStart <= drawEnd)
 	{
@@ -34,20 +34,20 @@ void	floor_ceiling(t_game *game)
 	int		j;
 
 	i = 0;
-	while (i < game->map.screen_h / 2)
+	while (i < HEIGHT / 2)
 	{
 		j = 0;
-		while (j < game->map.screen_w)
+		while (j < WIDTH)
 		{
 			put_pixel(game, j, i, rgb(183, 225, 253));
 			j++;
 		}
 		i++;
 	}
-	while (i < game->map.screen_h)
+	while (i < HEIGHT)
 	{
 		j = 0;
-		while (j < game->map.screen_w)
+		while (j < WIDTH)
 		{
 			put_pixel(game, j, i, rgb(61, 61, 61));
 			j++;
@@ -151,82 +151,85 @@ void	init_textures(t_game *game)
 // 	int	tex_y;
 // }
 
-void get_rays(t_game *game, int x, int w)
+void	init_raycasting(t_game *game, int x)
 {
-	int		h = game->map.screen_h;
-	double cameraX = 2 * x / (double)w - 1;
-	double rayDirX = game->player.dir_x + game->player.plane_x * cameraX;
-	double rayDirY = game->player.dir_y + game->player.plane_y * cameraX;
-	int mapX = (int)game->player.pos_x;
-	int mapY = (int)game->player.pos_y;
-	double sideDistX;
-	double sideDistY;
+	game->map.camera_x = 2 * x / (double)WIDTH - 1;
+	game->map.raydir_x = game->player.dir_x + game->player.plane_x * game->map.camera_x;
+	game->map.raydir_y = game->player.dir_y + game->player.plane_y * game->map.camera_x;
+	game->map.map_x = (int)game->player.pos_x;
+	game->map.map_y = (int)game->player.pos_y;
+	game->map.sidedist_x = 0;
+	game->map.sidedist_y = 0;
+	game->map.deltadist_x = 0;
+	game->map.deltadist_y = 0;
+	game->map.perpwalldist = 0;
+	game->map.step_x = 0;
+	game->map.step_y = 0;
+	game->map.hit = 0;
+	game->map.side = 0;
+}
 
-	double deltaDistX;
-	double deltaDistY;
+void get_rays(t_game *game, int x)
+{
+	int	h = HEIGHT;
 
-	if (rayDirX == 0)
-		deltaDistX = 1e30;
+	init_raycasting(game, x);
+	if (game->map.raydir_x == 0)
+		game->map.deltadist_x = 1e30;
 	else
-		deltaDistX = fabs(1.0 / rayDirX);
+		game->map.deltadist_x = fabs(1.0 / game->map.raydir_x);
 
-	if (rayDirY == 0)
-		deltaDistY = 1e30;
+	if (game->map.raydir_y == 0)
+		game->map.deltadist_y = 1e30;
 	else
-		deltaDistY = fabs(1.0 / rayDirY);
-
-	double perpWallDist;
-
-	int stepX;
-	int stepY;
-
-	int hit = 0;
-	int side;
-
-	if (rayDirX < 0)
+		game->map.deltadist_y = fabs(1.0 / game->map.raydir_y);
+	if (game->map.raydir_x < 0)
 	{
-		stepX = -1;
-		sideDistX = (game->player.pos_x - mapX) * deltaDistX;
+		game->map.step_x = -1;
+		game->map.sidedist_x = (game->player.pos_x - game->map.map_x) \
+		* game->map.deltadist_x;
 	}
 	else
 	{
-		stepX = 1;
-		sideDistX = (mapX + 1.0 - game->player.pos_x) * deltaDistX;
+		game->map.step_x = 1;
+		game->map.sidedist_x = (game->map.map_x + 1.0 - game->player.pos_x) \
+		* game->map.deltadist_x;
 	}
-	if (rayDirY < 0)
+	if (game->map.raydir_y < 0)
 	{
-		stepY = -1;
-		sideDistY = (game->player.pos_y - mapY) * deltaDistY;
+		game->map.step_y = -1;
+		game->map.sidedist_y = (game->player.pos_y - game->map.map_y) * \
+		game->map.deltadist_y;
 	}
 	else
 	{
-		stepY = 1;
-		sideDistY = (mapY + 1.0 - game->player.pos_y) * deltaDistY;
+		game->map.step_y = 1;
+		game->map.sidedist_y = (game->map.map_y + 1.0 - game->player.pos_y) * \
+		game->map.deltadist_y;
 	}
-	while (hit == 0)
+	while (game->map.hit == 0)
 	{
-		if (sideDistX < sideDistY)
+		if (game->map.sidedist_x < game->map.sidedist_y)
 		{
-			sideDistX += deltaDistX;
-			mapX += stepX;
-			side = 0;
+			game->map.sidedist_x += game->map.deltadist_x;
+			game->map.map_x += game->map.step_x;
+			game->map.side = 0;
 		}
 		else
 		{
-			sideDistY += deltaDistY;
-			mapY += stepY;
-			side = 1;
+			game->map.sidedist_y += game->map.deltadist_y;
+			game->map.map_y += game->map.step_y;
+			game->map.side = 1;
 		}
-		if (game->map.map[mapX][mapY] > 0)
-			hit = 1;
+		if (game->map.map[game->map.map_x][game->map.map_y] > 0)
+			game->map.hit = 1;
 	}
-	if (side == 0)
-		perpWallDist = (sideDistX - deltaDistX);
+	if (game->map.side == 0)
+		game->map.perpwalldist = (game->map.sidedist_x - game->map.deltadist_x);
 	else
-		perpWallDist = (sideDistY - deltaDistY);
-	int lineHeight = (int)(h / perpWallDist);
+		game->map.perpwalldist = (game->map.sidedist_y - game->map.deltadist_y);
+	int lineHeight = (int)(h / game->map.perpwalldist);
 
-	// int pitch = 100;
 
 	int drawStart = -lineHeight / 2 + h / 2;
 	if (drawStart < 0)
@@ -235,74 +238,85 @@ void get_rays(t_game *game, int x, int w)
 	if (drawEnd >= h)
 		drawEnd = h - 1;
 
-	// int texNum = game->map.map[mapX][mapY] - 1;
-	// double wall_x;
-	// if (side == 0)
-	// 	wall_x = game->player.pos_y + perpWallDist * rayDirY;
-	// else
-	// 	wall_x = game->player.pos_x + perpWallDist * rayDirX;
-	// wall_x -= floor(wall_x);
-	// int tex_x = (int)(wall_x * (double)game->textures->texture_w);
-	// if (side == 0 && rayDirX > 0)
-	// 	tex_x = game->textures->texture_w - tex_x - 1;
-	// if (side == 1 && rayDirY < 0)
-	// 	tex_x = game->textures->texture_w - tex_x - 1;
-
-	// double step = 1.0 * game->textures->texture_h / lineHeight;
-
-	// double tex_pos = (drawStart - pitch - h / 2 + lineHeight / 2) * step;
-	// int i = drawStart;
-	// while (i < drawEnd)
-	// {
-	// 	int tex_y = (int)tex_pos & (game->textures->texture_h - 1);
-	// 	tex_pos += step;
-	// }
-
-
-	// draw_textures(game, x);
-	// int	texture_x;
-	// int	texture_y;
-	// double	tex_pos;
-	// texture_x = (int)(game->player.)
-
-
-	int color = 0;
-
-	if (game->map.map[mapX][mapY] == 1)
-		color = rgb(255, 0, 0);
-	else if (game->map.map[mapX][mapY] == 2)
-		color = rgb(0, 255, 0);
-	else if (game->map.map[mapX][mapY] == 3)
-		color = rgb(0, 0, 255);
-	else if (game->map.map[mapX][mapY] == 4)
-		color = rgb(255, 255, 255);
+	int pitch = 100;
+	int texNum = game->map.map[game->map.map_x][game->map.map_y] - 1;
+	double wall_x;
+	if (game->map.side == 0)
+		wall_x = game->player.pos_y + game->map.perpwalldist * game->map.raydir_y;
 	else
-		color = rgb(255, 255, 0);
-	if (side == 1)
+		wall_x = game->player.pos_x + game->map.perpwalldist * game->map.raydir_x;
+	wall_x -= floor(wall_x);
+	int tex_x = (int)(wall_x * (double)game->textures->texture_w);
+	if (game->map.side == 0 && game->map.raydir_x > 0)
+		tex_x = game->textures->texture_w - tex_x - 1;
+	if (game->map.side == 1 && game->map.raydir_y < 0)
+		tex_x = game->textures->texture_w - tex_x - 1;
+
+	double step = 1.0 * game->textures->texture_h / lineHeight;
+
+	double tex_pos = (drawStart - pitch - h / 2 + lineHeight / 2) * step;
+	int i = drawStart;
+	while (i < drawEnd)
 	{
-		color /= 1.5;
+		int tex_y = (int)tex_pos & (game->textures->texture_h - 1);
+		tex_pos += step;
+
+		unsigned char *pixel = (unsigned char *)(game->textures[texNum].addr
+                            + tex_y * game->textures[texNum].size_line
+                            + tex_x * (game->textures[texNum].bpp / 8));
+
+		int r = pixel[2];
+		int g = pixel[1];
+		int b = pixel[0];
+
+		if (game->map.side == 1)
+		{
+			r /= 2;
+			g /= 2;
+			b /= 2;
+		}
+
+		int color = rgb(r, g, b);
+		put_pixel(game, x, i, color);
+		i++;
 	}
-	vertical_line(game, x, drawStart, drawEnd, color);
+
+	// int color = 0;
+
+	// if (game->map.map[game->map.map_x][game->map.map_y] == 1)
+	// 	color = rgb(255, 0, 0);
+	// else if (game->map.map[game->map.map_x][game->map.map_y] == 2)
+	// 	color = rgb(0, 255, 0);
+	// else if (game->map.map[game->map.map_x][game->map.map_y] == 3)
+	// 	color = rgb(0, 0, 255);
+	// else if (game->map.map[game->map.map_x][game->map.map_y] == 4)
+	// 	color = rgb(255, 255, 255);
+	// else
+	// 	color = rgb(255, 255, 0);
+	// if (game->map.side == 1)
+	// {
+	// 	color /= 1.5;
+	// }
+	// vertical_line(game, x, drawStart, drawEnd, color);
 }
 
 int	raycasting(t_game *game)
 {
-	int		w = game->map.screen_w;
-
 	floor_ceiling(game);
-	// init_textures(game);
+	init_textures(game);
 	int x = 0;
-	while (x < w)
+	while (x < WIDTH)
 	{
-		get_rays(game, x, w);
+		get_rays(game, x);
 		x++;
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	handle_movement(game);
 	mlx_destroy_image(game->mlx, game->img);
-	game->img = mlx_new_image(game->mlx, game->map.screen_w, game->map.screen_h);
+	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (!game->img)
 		return (printf("Error\nImage fail\n"), -1);
+	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->size_line, &game->endian);
 	reset_player_move(game);
 	return (0);
 }

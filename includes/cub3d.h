@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/28 15:09:43 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/30 17:02:38 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # include <X11/keysym.h>
 # include <X11/Xlib.h>
 # include <math.h>
+
+# define WIDTH 1920
+# define HEIGHT 1080
 
 typedef struct s_player
 {
@@ -45,11 +48,23 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	int	width;
-	int	height;
-	int	screen_w;
-	int	screen_h;
-	int	**map;
+	int		map_w;
+	int		map_h;
+	int		**map;
+	double	camera_x;
+	double	raydir_x;
+	double	raydir_y;
+	int		map_x;
+	int		map_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	perpwalldist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
 }	t_map;
 
 typedef struct s_texture
