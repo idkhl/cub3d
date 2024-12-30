@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:58:38 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/30 17:03:12 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/30 17:28:53 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int	rgb(int r, int g, int b)
     return (0 << 24 | r << 16 | g << 8 | b);
 }
 
-void	vertical_line(t_game *game, int x, int drawStart, int drawEnd, int color)
+void	vertical_line(t_game *game, int x, int color)
 {
 	if (x > WIDTH || x < 0)
 		return ;
-	while (drawStart <= drawEnd)
+	while (game->map.draw_start <= game->map.draw_end)
 	{
-		put_pixel(game, x, drawStart, color);
-		drawStart++;
+		put_pixel(game, x, game->map.draw_start, color);
+		game->map.draw_start++;
 	}
 }
 
@@ -167,13 +167,29 @@ void	init_raycasting(t_game *game, int x)
 	game->map.step_y = 0;
 	game->map.hit = 0;
 	game->map.side = 0;
+	game->map.line_height = 0;
+	game->map.draw_start = 0;
+	game->map.draw_end = 0;
 }
 
-void get_rays(t_game *game, int x)
+void	ray_calc2(t_game *game)
 {
-	int	h = HEIGHT;
+	if (game->map.raydir_y < 0)
+	{
+		game->map.step_y = -1;
+		game->map.sidedist_y = (game->player.pos_y - game->map.map_y) * \
+		game->map.deltadist_y;
+	}
+	else
+	{
+		game->map.step_y = 1;
+		game->map.sidedist_y = (game->map.map_y + 1.0 - game->player.pos_y) * \
+		game->map.deltadist_y;
+	}
+}
 
-	init_raycasting(game, x);
+void	ray_calc(t_game *game)
+{
 	if (game->map.raydir_x == 0)
 		game->map.deltadist_x = 1e30;
 	else
@@ -195,18 +211,11 @@ void get_rays(t_game *game, int x)
 		game->map.sidedist_x = (game->map.map_x + 1.0 - game->player.pos_x) \
 		* game->map.deltadist_x;
 	}
-	if (game->map.raydir_y < 0)
-	{
-		game->map.step_y = -1;
-		game->map.sidedist_y = (game->player.pos_y - game->map.map_y) * \
-		game->map.deltadist_y;
-	}
-	else
-	{
-		game->map.step_y = 1;
-		game->map.sidedist_y = (game->map.map_y + 1.0 - game->player.pos_y) * \
-		game->map.deltadist_y;
-	}
+	ray_calc2(game);
+}
+
+void	dda_loop(t_game *game)
+{
 	while (game->map.hit == 0)
 	{
 		if (game->map.sidedist_x < game->map.sidedist_y)
@@ -224,21 +233,33 @@ void get_rays(t_game *game, int x)
 		if (game->map.map[game->map.map_x][game->map.map_y] > 0)
 			game->map.hit = 1;
 	}
+}
+
+void	dist_height(t_game *game)
+{
 	if (game->map.side == 0)
 		game->map.perpwalldist = (game->map.sidedist_x - game->map.deltadist_x);
 	else
 		game->map.perpwalldist = (game->map.sidedist_y - game->map.deltadist_y);
-	int lineHeight = (int)(h / game->map.perpwalldist);
+	game->map.line_height = (int)(HEIGHT / game->map.perpwalldist);
 
+	game->map.draw_start = -game->map.line_height / 2 + HEIGHT / 2;
+	if (game->map.draw_start < 0)
+		game->map.draw_start = 0;
+	game->map.draw_end = game->map.line_height / 2 + HEIGHT / 2;
+	if (game->map.draw_end >= HEIGHT)
+		game->map.draw_end = HEIGHT - 1;
+}
 
-	int drawStart = -lineHeight / 2 + h / 2;
-	if (drawStart < 0)
-		drawStart = 0;
-	int drawEnd = lineHeight / 2 + h / 2;
-	if (drawEnd >= h)
-		drawEnd = h - 1;
+void	get_rays(t_game *game, int x)
+{
+	int	h = HEIGHT;
 
-	int pitch = 100;
+	init_raycasting(game, x);
+	ray_calc(game);
+	dda_loop(game);
+	dist_height(game);
+
 	int texNum = game->map.map[game->map.map_x][game->map.map_y] - 1;
 	double wall_x;
 	if (game->map.side == 0)
@@ -252,11 +273,11 @@ void get_rays(t_game *game, int x)
 	if (game->map.side == 1 && game->map.raydir_y < 0)
 		tex_x = game->textures->texture_w - tex_x - 1;
 
-	double step = 1.0 * game->textures->texture_h / lineHeight;
+	double step = 1.0 * game->textures->texture_h / game->map.line_height;
 
-	double tex_pos = (drawStart - pitch - h / 2 + lineHeight / 2) * step;
-	int i = drawStart;
-	while (i < drawEnd)
+	double tex_pos = (game->map.draw_start - h / 2 + game->map.line_height / 2) * step;
+	int i = game->map.draw_start;
+	while (i < game->map.draw_end)
 	{
 		int tex_y = (int)tex_pos & (game->textures->texture_h - 1);
 		tex_pos += step;
@@ -297,7 +318,7 @@ void get_rays(t_game *game, int x)
 	// {
 	// 	color /= 1.5;
 	// }
-	// vertical_line(game, x, drawStart, drawEnd, color);
+	// vertical_line(game, x, color);
 }
 
 int	raycasting(t_game *game)

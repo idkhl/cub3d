@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/30 17:02:38 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:03:44 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ typedef struct s_map
 	int		step_y;
 	int		hit;
 	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
 }	t_map;
 
 typedef struct s_texture
