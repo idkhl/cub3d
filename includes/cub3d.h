@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/30 18:03:44 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/31 16:21:44 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,12 @@ typedef struct s_map
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+	int		tex_num;
+	double	wall_x;
+	int		tex_x;
+	int		tex_y;
+	double	step;
+	double	tex_pos;
 }	t_map;
 
 typedef struct s_texture
@@ -100,6 +106,14 @@ typedef struct s_game
 int		raycasting(t_game *game);
 void	put_pixel(t_game *game, int x, int y, int color);
 void	handle_movement(t_game *game);
+void	floor_ceiling(t_game *game);
+int		rgb(int r, int g, int b);
+void	dist_height(t_game *game);
+void	dda_loop(t_game *game);
+void	ray_calc(t_game *game);
+void	ray_calc2(t_game *game);
+void	get_textures(t_game *game, int x);
+void	init_textures(t_game *game);
 
 	/*	UTILS	*/
 

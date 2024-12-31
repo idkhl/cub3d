@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:41 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/30 15:47:59 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/31 17:18:58 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 void	destroy_images(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 4)
 	{
 		if (game->textures[i].img_data)
+		{
+			printf("i = %d\n", i);
 			mlx_destroy_image(game->mlx, game->textures[i].img_data);
+		}
 		i++;
 	}
 }
@@ -28,6 +31,7 @@ void	destroy_images(t_game *game)
 int	destroy(t_game *game)
 {
 	destroy_images(game);
+	mlx_destroy_image(game->mlx, game->img);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
@@ -110,26 +114,13 @@ void	fill_map(t_map *map)
 			map->map[y][x] = temp_map[y][x];
 }
 
-void	put_pixel(t_game *game, int x, int y, int color)
-{
-	char	*dst;
 
-	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
-	{
-		fprintf(stderr, "Error\nPixel out of bounds: (%d, %d)\n", x, y);
-		return ;
-	}
-	dst = game->addr + (y * game->size_line + x * (game->bpp / 8));
-	*(unsigned int*)dst = color;
-}
 
 int	init_map(t_game *game)
 {
 	ft_memset(&game->map, 0, sizeof(t_map));
 	game->map.map_w = 24;
 	game->map.map_h = 24;
-	// WIDTH = 640;
-	// HEIGHT = 480;
 	game->map.map = allocate_map(&game->map);
 	if (!game->map.map)
 	{
@@ -179,11 +170,9 @@ int	init_game(t_game *game)
 	if (init_map(game) == -1)
 		return (-1);
 	if (init_image(game) == -1)
-	{
-		destroy(game);
 		return (-1);
-	}
 	init_player(game);
+	init_textures(game);
 	return (0);
 }
 
