@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:41 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/31 17:18:58 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/31 17:22:06 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	destroy_images(t_game *game)
 	while (i < 4)
 	{
 		if (game->textures[i].img_data)
-		{
-			printf("i = %d\n", i);
 			mlx_destroy_image(game->mlx, game->textures[i].img_data);
-		}
 		i++;
 	}
 }
