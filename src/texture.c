@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:24:19 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/31 14:24:52 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/31 18:39:46 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,20 @@ void	texture_loop(t_game *game, int x)
 
 void	get_textures(t_game *game, int x)
 {
-	game->map.tex_num = game->map.map[game->map.map_x][game->map.map_y] - 1;
+	if (game->map.side == 0)
+	{
+		if (game->map.raydir_x < 0)
+			game->map.tex_num = 0;
+		else
+			game->map.tex_num = 1;
+	}
+	else
+	{
+		if (game->map.raydir_y < 0)
+			game->map.tex_num = 2;
+		else
+			game->map.tex_num = 3;
+	}
 	if (game->map.side == 0)
 		game->map.wall_x = game->player.pos_y + game->map.perpwalldist \
 		* game->map.raydir_y;

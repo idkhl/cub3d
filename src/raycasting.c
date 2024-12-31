@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:58:38 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/31 16:21:07 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/12/31 17:25:29 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	get_rays(t_game *game, int x)
 	// if (game->map.side == 1)
 	// {
 	// 	color /= 1.5;
-	// }
+	// } 
 	// vertical_line(game, x, color);
 }
 
