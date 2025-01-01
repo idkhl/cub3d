@@ -6,18 +6,18 @@
 #    By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/24 17:14:00 by idakhlao          #+#    #+#              #
-#    Updated: 2024/12/31 16:04:20 by idakhlao         ###   ########.fr        #
+#    Updated: 2025/01/01 13:35:20 by idakhlao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 
-SRCS = src/prout.c src/raycasting.c src/raycasting_utils.c src/calc.c src/movement.c src/texture.c
+SRCS = src/prout.c src/raycasting.c src/raycasting_utils.c src/calc.c src/movement.c src/texture.c src/handle_keys.c
 
 OBJS_DIR = .objects
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -lXext -lX11
 
 MINILIB = minilibx-linux/libmlx_Linux.a

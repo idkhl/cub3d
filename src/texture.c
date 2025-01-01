@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:24:19 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/31 18:39:46 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/01 15:32:59 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ void	texture_loop(t_game *game, int x)
 	int				i;
 	unsigned char	*pixel;
 
+	if (game->map.side == 0 && game->map.raydir_x > 0)
+		game->map.tex_x = game->textures->texture_w - game->map.tex_x - 1;
+	if (game->map.side == 1 && game->map.raydir_y < 0)
+		game->map.tex_x = game->textures->texture_w - game->map.tex_x - 1;
 	pixel = NULL;
 	game->map.step = 1.0 * game->textures->texture_h / game->map.line_height;
 	i = game->map.draw_start;
@@ -80,10 +84,5 @@ void	get_textures(t_game *game, int x)
 	game->map.wall_x -= floor(game->map.wall_x);
 	game->map.tex_x = (int)(game->map.wall_x * \
 	(double)game->textures->texture_w);
-	if (game->map.side == 0 && game->map.raydir_x > 0)
-		game->map.tex_x = game->textures->texture_w - game->map.tex_x - 1;
-	if (game->map.side == 1 && game->map.raydir_y < 0)
-		game->map.tex_x = game->textures->texture_w - game->map.tex_x - 1;
-
 	texture_loop(game, x);
 }

@@ -6,53 +6,11 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:41 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/31 17:22:06 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/01 15:39:17 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	destroy_images(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		if (game->textures[i].img_data)
-			mlx_destroy_image(game->mlx, game->textures[i].img_data);
-		i++;
-	}
-}
-
-int	destroy(t_game *game)
-{
-	destroy_images(game);
-	mlx_destroy_image(game->mlx, game->img);
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
-	exit(EXIT_FAILURE);
-}
-
-int	handle_keypress(int keysym, t_game *game)
-{
-	if (keysym == XK_Escape)
-		destroy(game);
-	if (keysym == XK_w)
-		game->player.up = 1;
-	if (keysym == XK_s)
-		game->player.down = 1;
-	if (keysym == XK_a)
-		game->player.left = 1;
-	if (keysym == XK_d)
-		game->player.right = 1;
-	if (keysym == XK_Left)
-		game->player.r_left = 1;
-	if (keysym == XK_Right)
-		game->player.r_right = 1;
-	return (0);
-}
 
 int	**allocate_map(t_map *map)
 {
@@ -111,8 +69,6 @@ void	fill_map(t_map *map)
 			map->map[y][x] = temp_map[y][x];
 }
 
-
-
 int	init_map(t_game *game)
 {
 	ft_memset(&game->map, 0, sizeof(t_map));
@@ -139,7 +95,8 @@ int	init_image(t_game *game)
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (!game->img)
 		return (printf("Error\nImage fail\n"), -1);
-	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->size_line, &game->endian);
+	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->size_line, \
+	&game->endian);
 	if (!game->addr)
 		return (printf("Error\nData_addr fail\n"), -1);
 	return (0);
@@ -182,6 +139,7 @@ int	main(void)
 	mlx_hook(game.win, KeyPress, KeyPressMask, &handle_keypress, &game);
 	mlx_hook(game.win, 17, 0, &destroy, &game);
 	mlx_loop_hook(game.mlx, raycasting, &game);
+	mlx_hook(game.win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &game);
 	mlx_loop(game.mlx);
 	mlx_destroy_display(game.mlx);
 }

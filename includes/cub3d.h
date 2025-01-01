@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/31 16:21:44 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/01 13:35:02 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,19 +104,22 @@ typedef struct s_game
 	/*	RAYCASTING	*/
 
 int		raycasting(t_game *game);
-void	put_pixel(t_game *game, int x, int y, int color);
 void	handle_movement(t_game *game);
-void	floor_ceiling(t_game *game);
-int		rgb(int r, int g, int b);
 void	dist_height(t_game *game);
 void	dda_loop(t_game *game);
 void	ray_calc(t_game *game);
 void	ray_calc2(t_game *game);
 void	get_textures(t_game *game, int x);
 void	init_textures(t_game *game);
+int		handle_keyrelease(int keysym, t_game *game);
+int		handle_keypress(int keysym, t_game *game);
+int		destroy(t_game *game);
 
 	/*	UTILS	*/
 
+void	floor_ceiling(t_game *game);
+int		rgb(int r, int g, int b);
+void	put_pixel(t_game *game, int x, int y, int color);
 void	*ft_memset(void *s, int c, size_t n);
 
 #endif

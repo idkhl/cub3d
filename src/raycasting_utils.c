@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 15:52:08 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/31 14:26:25 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/01 15:37:34 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	put_pixel(t_game *game, int x, int y, int color)
 		return ;
 	}
 	dst = game->addr + (y * game->size_line + x * (game->bpp / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
 void	floor_ceiling(t_game *game)

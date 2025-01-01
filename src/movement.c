@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:27:37 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/31 14:28:20 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/01 15:37:21 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	right_left(t_game *game, double movespeed)
 	}
 }
 
-void	rotate_right(t_game *game, double olddirx, double oldplane, double rotspeed)
+void	rotate_right(t_game *game, double olddirx, double oldplane, \
+		double rotspeed)
 {
 	olddirx = game->player.dir_x;
 	game->player.dir_x = game->player.dir_x * cos(-rotspeed) - \
@@ -100,7 +101,7 @@ void	handle_movement(t_game *game)
 	double	rotspeed;
 
 	movespeed = 0.08;
-	rotspeed = 0.08;
+	rotspeed = 0.017;
 	up_down(game, movespeed);
 	right_left(game, movespeed);
 	rotate(game, rotspeed);
