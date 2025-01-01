@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 15:52:08 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/01 15:37:34 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/01 16:19:09 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	floor_ceiling(t_game *game)
 		j = 0;
 		while (j < WIDTH)
 		{
-			put_pixel(game, j, i, rgb(183, 225, 253));
+			put_pixel(game, j, i, rgb(135, 175, 226));
 			j++;
 		}
 		i++;
@@ -66,7 +66,7 @@ void	floor_ceiling(t_game *game)
 		j = 0;
 		while (j < WIDTH)
 		{
-			put_pixel(game, j, i, rgb(61, 61, 61));
+			put_pixel(game, j, i, rgb(66, 58, 51));
 			j++;
 		}
 		i++;
