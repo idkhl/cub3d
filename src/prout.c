@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:41 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/01 16:56:32 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/02 13:49:26 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,10 @@ void	init_player(t_game *game)
 {
 	game->player.pos_x = 22.0;
 	game->player.pos_y = 12.0;
-	game->player.dir_x = -1.0;
-	game->player.dir_y = 0.0;
-	game->player.plane_x = 0.0;
-	game->player.plane_y = 0.66;
-	game->player.time = 0;
+	game->player.dir_x = 0.0;
+	game->player.dir_y = -1.0;
+	game->player.plane_x = -0.66;
+	game->player.plane_y = 0.0;
 	game->player.up = 0;
 	game->player.down = 0;
 	game->player.left = 0;
@@ -118,6 +117,33 @@ void	init_player(t_game *game)
 	game->player.r_left = 0;
 	game->player.r_right = 0;
 }
+
+/*
+if char[i][j] = N
+player->pos_x = i;
+player->pos_y = j;
+
+if pos_player = N
+	game->player.dir_x = -1.0;
+	game->player.dir_y = 0.0;
+	game->player.plane_x = 0.0;
+	game->player.plane_y = 0.66;
+if pos_player = S
+	game->player.dir_x = 1.0;
+	game->player.dir_y = 0.0;
+	game->player.plane_x = 0.0;
+	game->player.plane_y = -0.66;
+if pos_player = E
+	game->player.dir_x = 0.0;
+	game->player.dir_y = 1.0;
+	game->player.plane_x = 0.66;
+	game->player.plane_y = 0.0;
+if pos_player = W
+	game->player.dir_x = 0.0;
+	game->player.dir_y = -1.0;
+	game->player.plane_x = -0.66;
+	game->player.plane_y = 0.0;
+*/
 
 int	init_game(t_game *game)
 {
@@ -137,17 +163,25 @@ int	main(void)
 	if (init_game(&game) == -1)
 		return (0);
 	mlx_hook(game.win, KeyPress, KeyPressMask, &handle_keypress, &game);
-	int x;
-	int y;
-	mlx_mouse_get_pos(game.mlx, game.win, &x, &y);
-	printf("x = %d\n", x);
-	if (x < WIDTH / 2)
-		printf("gauche\n");
-	if (x > WIDTH / 2)
-		printf("droite\n");
 	mlx_hook(game.win, 17, 0, &destroy, &game);
 	mlx_loop_hook(game.mlx, raycasting, &game);
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &game);
 	mlx_loop(game.mlx);
 	mlx_destroy_display(game.mlx);
 }
+	// int x;
+	// int y;
+	// mlx_mouse_get_pos(game.mlx, game.win, &x, &y);
+	// printf("x = %d\n", x);
+	// if (x < WIDTH / 2)
+	// 	printf("gauche\n");
+	// if (x > WIDTH / 2)
+	// 	printf("droite\n");
+
+	// int y;
+	// mlx_mouse_get_pos(game.mlx, game.win, &x, &y);
+	// printf("x = %d\n", x);
+	// if (x < WIDTH / 2)
+	// 	printf("gauche\n");
+	// if (x > WIDTH / 2)
+	// 	printf("droite\n");

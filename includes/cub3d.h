@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/01 13:35:02 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/02 13:15:19 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-	double	time;
 	int		up;
 	int		down;
 	int		left;
@@ -63,7 +62,7 @@ typedef struct s_map
 	double	perpwalldist;
 	int		step_x;
 	int		step_y;
-	int		hit;
+	// int		hit;
 	int		side;
 	int		line_height;
 	int		draw_start;

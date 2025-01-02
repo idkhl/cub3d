@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:22:43 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/12/31 16:37:07 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/02 13:15:46 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ void	ray_calc(t_game *game)
 
 void	dda_loop(t_game *game)
 {
-	while (game->map.hit == 0)
+	int	hit;
+
+	hit = 0;
+	while (hit == 0)
 	{
 		if (game->map.sidedist_x < game->map.sidedist_y)
 		{
@@ -69,8 +72,8 @@ void	dda_loop(t_game *game)
 			game->map.map_y += game->map.step_y;
 			game->map.side = 1;
 		}
-		if (game->map.map[game->map.map_x][game->map.map_y] > 0)
-			game->map.hit = 1;
+		if (game->map.map[game->map.map_x][game->map.map_y] > 0) // changer ici pour char **
+			hit = 1;
 	}
 }
 

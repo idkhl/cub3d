@@ -6,13 +6,11 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:58:38 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/01 16:18:13 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/02 14:01:40 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-
 
 void	init_textures(t_game *game)
 {
@@ -22,16 +20,16 @@ void	init_textures(t_game *game)
 	game->textures->texture_w = 64;
 	game->textures[0].img_data = mlx_xpm_file_to_image(game->mlx, \
 	"textures/bluestone.xpm", &game->textures[0].texture_w, \
-	&game->textures[0].texture_h);
+	&game->textures[0].texture_h); //NO
 	game->textures[1].img_data = mlx_xpm_file_to_image(game->mlx, \
 	"textures/eagle.xpm", &game->textures[1].texture_w, \
-	&game->textures[1].texture_h);
+	&game->textures[1].texture_h); //SO
 	game->textures[2].img_data = mlx_xpm_file_to_image(game->mlx, \
 	"textures/purplestone.xpm", &game->textures[2].texture_w, \
-	&game->textures[2].texture_h);
+	&game->textures[2].texture_h); //WE
 	game->textures[3].img_data = mlx_xpm_file_to_image(game->mlx, \
 	"textures/redbrick.xpm", &game->textures[3].texture_w, \
-	&game->textures[3].texture_h);
+	&game->textures[3].texture_h); //EA
 	i = 0;
 	while (i < 4)
 	{
@@ -63,7 +61,7 @@ void	init_raycasting(t_game *game, int x)
 	game->map.perpwalldist = 0;
 	game->map.step_x = 0;
 	game->map.step_y = 0;
-	game->map.hit = 0;
+	// game->map.hit = 0;
 	game->map.side = 0;
 	game->map.line_height = 0;
 	game->map.draw_start = 0;
