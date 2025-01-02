@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:24:19 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/01 16:14:28 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/02 17:00:17 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	texture_color(t_game *game, int x, int i, unsigned char *pixel)
 	b = pixel[0];
 	if (game->map.side == 1)
 	{
-		r /= 1.15;
-		g /= 1.15;
-		b /= 1.15;
+		r /= 1.5;
+		g /= 1.5;
+		b /= 1.5;
 	}
 	color = rgb(r, g, b);
 	put_pixel(game, x, i, color);

@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/02 13:15:19 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/02 17:19:07 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ typedef struct s_game
 	int			bpp;
 	int			size_line;
 	int			endian;
+	int			mouse_x;
+	int			mouse_y;
 	t_map		map;
 	t_player	player;
 	t_texture	textures[4];

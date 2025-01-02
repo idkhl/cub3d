@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:41 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/02 13:49:26 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/02 18:21:38 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,24 +164,14 @@ int	main(void)
 		return (0);
 	mlx_hook(game.win, KeyPress, KeyPressMask, &handle_keypress, &game);
 	mlx_hook(game.win, 17, 0, &destroy, &game);
+	// int x;
+	// int y;
+	// mlx_mouse_get_pos(game.mlx, game.win, &game.mouse_x, &game.mouse_y);
+	mlx_mouse_move(game.mlx, game.win, WIDTH / 2, HEIGHT / 2);
+	// mlx_mouse_hook()
+	mlx_mouse_hide(game.mlx, game.win);
 	mlx_loop_hook(game.mlx, raycasting, &game);
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &game);
 	mlx_loop(game.mlx);
 	mlx_destroy_display(game.mlx);
 }
-	// int x;
-	// int y;
-	// mlx_mouse_get_pos(game.mlx, game.win, &x, &y);
-	// printf("x = %d\n", x);
-	// if (x < WIDTH / 2)
-	// 	printf("gauche\n");
-	// if (x > WIDTH / 2)
-	// 	printf("droite\n");
-
-	// int y;
-	// mlx_mouse_get_pos(game.mlx, game.win, &x, &y);
-	// printf("x = %d\n", x);
-	// if (x < WIDTH / 2)
-	// 	printf("gauche\n");
-	// if (x > WIDTH / 2)
-	// 	printf("droite\n");

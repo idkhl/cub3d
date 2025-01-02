@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:27:37 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/02 13:59:46 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/02 18:03:05 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ void	rotate_right(t_game *game, double olddirx, double oldplane, \
 	game->player.plane_y * sin(-rotspeed);
 	game->player.plane_y = oldplane * sin(-rotspeed) + game->player.plane_y \
 	* cos(-rotspeed);
+	int x = game->mouse_x;
+	if (game->mouse_x == x)
+		game->player.r_right = 0;
 }
 
 void	rotate(t_game *game, double rotspeed)
@@ -92,6 +95,9 @@ void	rotate(t_game *game, double rotspeed)
 		- game->player.plane_y * sin(rotspeed);
 		game->player.plane_y = oldplane * sin(rotspeed) + game->player.plane_y \
 		* cos(rotspeed);
+		int x = game->mouse_x;
+		if (game->mouse_x == x)
+		game->player.r_left = 0;
 	}
 }
 
@@ -102,7 +108,13 @@ void	handle_movement(t_game *game)
 
 	movespeed = 0.08;
 	rotspeed = 0.017;
+	mlx_mouse_get_pos(game->mlx, game->win, &game->mouse_x, &game->mouse_y);
+	mlx_mouse_move(game->mlx, game->win, WIDTH /2, HEIGHT /2);
+	if (game->mouse_x > WIDTH / 2)
+		game->player.r_right = 1;
+	if (game->mouse_x < WIDTH / 2)
+		game->player.r_left = 1;
 	up_down(game, movespeed);
 	right_left(game, movespeed);
-	rotate(game, rotspeed);
+	rotate(game, rotspeed);	
 }
