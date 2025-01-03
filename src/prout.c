@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:41 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/02 18:21:38 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/03 18:59:04 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,32 +38,19 @@ int	**allocate_map(t_map *map)
 
 void	fill_map(t_map *map)
 {
-	int temp_map[24][24] = {
-		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-		{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-		{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-	};
+	int temp_map[10][20] = {
+    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+};
+
 	for (int y = 0; y < map->map_h; y++)
 		for (int x = 0; x < map->map_w; x++)
 			map->map[y][x] = temp_map[y][x];
@@ -72,8 +59,8 @@ void	fill_map(t_map *map)
 int	init_map(t_game *game)
 {
 	ft_memset(&game->map, 0, sizeof(t_map));
-	game->map.map_w = 24;
-	game->map.map_h = 24;
+	game->map.map_w = 20;
+	game->map.map_h = 10;
 	game->map.map = allocate_map(&game->map);
 	if (!game->map.map)
 	{
@@ -104,18 +91,20 @@ int	init_image(t_game *game)
 
 void	init_player(t_game *game)
 {
-	game->player.pos_x = 22.0;
-	game->player.pos_y = 12.0;
-	game->player.dir_x = 0.0;
-	game->player.dir_y = -1.0;
-	game->player.plane_x = -0.66;
-	game->player.plane_y = 0.0;
+	game->player.pos_x = 2.0;
+	game->player.pos_y = 2.0;
+	game->player.dir_x = 1.0;
+	game->player.dir_y = 0.0;
+	game->player.plane_x = 0.0;
+	game->player.plane_y = -0.66;
 	game->player.up = 0;
 	game->player.down = 0;
 	game->player.left = 0;
 	game->player.right = 0;
 	game->player.r_left = 0;
 	game->player.r_right = 0;
+	game->player.mr_left = 0;
+	game->player.mr_right = 0;
 }
 
 /*
@@ -164,14 +153,11 @@ int	main(void)
 		return (0);
 	mlx_hook(game.win, KeyPress, KeyPressMask, &handle_keypress, &game);
 	mlx_hook(game.win, 17, 0, &destroy, &game);
-	// int x;
-	// int y;
-	// mlx_mouse_get_pos(game.mlx, game.win, &game.mouse_x, &game.mouse_y);
-	mlx_mouse_move(game.mlx, game.win, WIDTH / 2, HEIGHT / 2);
-	// mlx_mouse_hook()
-	mlx_mouse_hide(game.mlx, game.win);
+	mlx_mouse_move(game.mlx, game.win, WIDTH / 2, HEIGHT / 2); //bonus
+	// mlx_mouse_hide(game.mlx, game.win); //bonus
 	mlx_loop_hook(game.mlx, raycasting, &game);
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &game);
 	mlx_loop(game.mlx);
+	minimap(&game);
 	mlx_destroy_display(game.mlx);
 }

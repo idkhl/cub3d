@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/02 17:19:07 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:17:05 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
+
+
 typedef struct s_player
 {
 	double	pos_x;
@@ -43,11 +45,13 @@ typedef struct s_player
 	int		right;
 	int		r_left;
 	int		r_right;
+	int		mr_right; //bonus
+	int		mr_left; //bonus
 }	t_player;
 
 typedef struct s_map
 {
-	int		map_w;
+	int		map_w; 
 	int		map_h;
 	int		**map;
 	double	camera_x;
@@ -62,7 +66,6 @@ typedef struct s_map
 	double	perpwalldist;
 	int		step_x;
 	int		step_y;
-	// int		hit;
 	int		side;
 	int		line_height;
 	int		draw_start;
@@ -86,6 +89,18 @@ typedef struct s_texture
 	char	*addr;
 }	t_texture;
 
+typedef struct s_minimap //bonus
+{
+	// int		minimap_w;
+	// int		minimap_h;
+	void	*minimap;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	char	*addr;
+	int		scale;
+}	t_minimap;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -100,6 +115,7 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_texture	textures[4];
+	t_minimap	minimap; //bonus
 }	t_game;
 
 	/*	RAYCASTING	*/
@@ -122,5 +138,7 @@ void	floor_ceiling(t_game *game);
 int		rgb(int r, int g, int b);
 void	put_pixel(t_game *game, int x, int y, int color);
 void	*ft_memset(void *s, int c, size_t n);
+
+void	minimap(t_game *game);
 
 #endif

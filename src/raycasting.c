@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:58:38 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/02 14:01:40 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/03 18:58:08 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	init_raycasting(t_game *game, int x)
 	game->map.perpwalldist = 0;
 	game->map.step_x = 0;
 	game->map.step_y = 0;
-	// game->map.hit = 0;
 	game->map.side = 0;
 	game->map.line_height = 0;
 	game->map.draw_start = 0;
@@ -94,9 +93,11 @@ int	raycasting(t_game *game)
 		get_rays(game, x);
 		x++;
 	}
+	minimap(game); // bonus
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	handle_movement(game);
 	mlx_destroy_image(game->mlx, game->img);
+	mlx_destroy_image(game->mlx, game->minimap.minimap); //bonus
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (!game->img)
 		return (printf("Error\nImage fail\n"), -1);

@@ -6,13 +6,13 @@
 #    By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/24 17:14:00 by idakhlao          #+#    #+#              #
-#    Updated: 2025/01/01 13:35:20 by idakhlao         ###   ########.fr        #
+#    Updated: 2025/01/03 16:34:05 by idakhlao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
-SRCS = src/prout.c src/raycasting.c src/raycasting_utils.c src/calc.c src/movement.c src/texture.c src/handle_keys.c
+SRCS = src/prout.c src/raycasting.c src/raycasting_utils.c src/calc.c src/movement.c src/texture.c src/handle_keys.c src/minimap.c
 
 OBJS_DIR = .objects
 OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
