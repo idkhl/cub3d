@@ -1,0 +1,14 @@
+{
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/include",
+        "${workspaceFolder}/external/LIBFT",
+        "${workspaceFolder}/external/GNL/include",
+        "${workspaceFolder}/external/DPRINTF",
+        "${workspaceFolder}/minilibx-linux",
+        "/usr/include"
+    ],
+    "C_Cpp.default.compilerPath": "/usr/bin/cc",
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.default.intelliSenseMode": "linux-gcc-x64"
+}
