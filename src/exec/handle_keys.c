@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 13:32:22 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/06 19:07:14 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:42:47 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,8 @@ void	destroy_images(t_game *game)
 
 int	destroy(t_game *game)
 {
-	destroy_images(game);
-	mlx_destroy_image(game->mlx, game->img);
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
-	exit(EXIT_FAILURE);
+	ft_free_all(game);
+	exit(EXIT_SUCCESS);
 }
 
 int	handle_keypress(int keysym, t_game *game)

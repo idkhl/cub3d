@@ -6,44 +6,12 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:58:38 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/07 09:05:30 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/07 10:07:46 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_textures(t_game *game)
-{
-	int	i;
-
-	game->textures->texture_h = 64;
-	game->textures->texture_w = 64;
-	game->textures[0].img_data = mlx_xpm_file_to_image(game->mlx, \
-	game->parsing.no, &game->textures[0].texture_w, \
-	&game->textures[0].texture_h); //NO
-	game->textures[1].img_data = mlx_xpm_file_to_image(game->mlx, \
-	game->parsing.so, &game->textures[1].texture_w, \
-	&game->textures[1].texture_h); //SO
-	game->textures[2].img_data = mlx_xpm_file_to_image(game->mlx, \
-	game->parsing.we, &game->textures[2].texture_w, \
-	&game->textures[2].texture_h); //WE
-	game->textures[3].img_data = mlx_xpm_file_to_image(game->mlx, \
-	game->parsing.ea, &game->textures[3].texture_w, \
-	&game->textures[3].texture_h); //EA
-	i = 0;
-	while (i < 4)
-	{
-		if (game->textures[i].img_data == NULL)
-		{
-			printf("Error loading texture %d\n", i);
-			exit(1);
-		}
-		game->textures[i].addr = mlx_get_data_addr(game->textures[i].img_data, \
-		&game->textures[i].bpp, &game->textures[i].size_line, \
-		&game->textures[i].endian);
-		i++;
-	}
-}
 
 void	init_raycasting(t_game *game, int x)
 {

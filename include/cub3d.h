@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/07 09:14:11 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:38:10 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,16 @@ typedef struct s_game
 }	t_game;
 
 //////////////////////////////////////////////////////////////////
+//                       INITIALIZING						   //
+////////////////////////////////////////////////////////////////
+
+int				init_game(t_game *game);
+int				init_player(t_game *game);
+int				init_mlx(t_game *game);
+int				init_textures_wall(t_game *game);
+
+
+//////////////////////////////////////////////////////////////////
 //                        RAYCASTING						   //
 ////////////////////////////////////////////////////////////////
 
@@ -174,9 +184,7 @@ void			floor_ceiling(t_game *game);
 int				rgb(int r, int g, int b);
 void			put_pixel(t_game *game, int x, int y, int color);
 bool			is_pos_player(char c);
-
 void			minimap(t_game *game);
-
 
 //////////////////////////////////////////////////////////////////
 //                          PARSING							   //
@@ -210,8 +218,9 @@ void			init_pos_s_n(t_game *data, char **map, int x, int y);
 void			init_pos_e_w(t_game *data, char **map, int x, int y);
 int				check_space_in_map(t_game *data);
 int				check_first_last_line(t_game *data);
+int				check_valid_xpm(t_game *data);
 
-void			ft_free_all(t_game *data);
+int				ft_free_all(t_game *data);
 void			print_tab(char **str);
 
 #endif

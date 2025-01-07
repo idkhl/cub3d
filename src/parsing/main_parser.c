@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 07:00:38 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/07 08:35:35 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:23:12 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ void	debbuger(t_game *data);
 int main_parser(int argc, char **argv, t_game *data)
 {
 	if (handle_parsing(argc, argv, data) == ERROR)
-	{
-		ft_free_all(data);
 		return (ERROR);
-	}
 	debbuger(data);
 	return (SUCCESS);
 }
