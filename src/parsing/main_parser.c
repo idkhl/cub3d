@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 07:00:38 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/06 18:46:48 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/07 06:25:14 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	debbuger(t_game *data)
 	print_tab(data->parsing.map);
 	printf("\n");
 	printf("============= MAPS FOR EXEC ===============\n");
-	replace_space_by_set(data->parsing.map, '0');
+	replace_space_by_set(data->parsing.map, '1');
 	print_tab(data->parsing.map);
 	printf("\n");
 	printf("=========== VALUE FOLDER ============\n");

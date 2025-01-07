@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:58:38 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/06 19:07:44 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/07 05:59:39 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	init_textures(t_game *game)
 	game->textures->texture_h = 64;
 	game->textures->texture_w = 64;
 	game->textures[0].img_data = mlx_xpm_file_to_image(game->mlx, \
-	"textures/bluestone.xpm", &game->textures[0].texture_w, \
+	game->parsing.no, &game->textures[0].texture_w, \
 	&game->textures[0].texture_h); //NO
 	game->textures[1].img_data = mlx_xpm_file_to_image(game->mlx, \
-	"textures/eagle.xpm", &game->textures[1].texture_w, \
+	game->parsing.so, &game->textures[1].texture_w, \
 	&game->textures[1].texture_h); //SO
 	game->textures[2].img_data = mlx_xpm_file_to_image(game->mlx, \
-	"textures/purplestone.xpm", &game->textures[2].texture_w, \
+	game->parsing.we, &game->textures[2].texture_w, \
 	&game->textures[2].texture_h); //WE
 	game->textures[3].img_data = mlx_xpm_file_to_image(game->mlx, \
-	"textures/redbrick.xpm", &game->textures[3].texture_w, \
+	game->parsing.ea, &game->textures[3].texture_w, \
 	&game->textures[3].texture_h); //EA
 	i = 0;
 	while (i < 4)

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:41 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/06 19:08:25 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/07 06:22:43 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	fill_map(t_map *map)
 
 int	init_map(t_game *game)
 {
-	ft_memset(&game->map, 0, sizeof(t_map));
+	// ft_memset(&game->map, 0, sizeof(t_map));
 	game->map.map_w = 20;
 	game->map.map_h = 10;
 	game->map.map = allocate_map(&game->map);
@@ -89,51 +89,56 @@ int	init_image(t_game *game)
 	return (0);
 }
 
+// void	init_player(t_game *game)
+// {
+// 	game->player.pos_x = 2.0;
+// 	game->player.pos_y = 2.0;
+// 	game->player.dir_x = 1.0;
+// 	game->player.dir_y = 0.0;
+// 	game->player.plane_x = 0.0;
+// 	game->player.plane_y = -0.66;
+// 	game->player.up = 0;
+// 	game->player.down = 0;
+// 	game->player.left = 0;
+// 	game->player.right = 0;
+// 	game->player.r_left = 0;
+// 	game->player.r_right = 0;
+// 	game->player.mr_left = 0;
+// 	game->player.mr_right = 0;
+// }
 void	init_player(t_game *game)
 {
 	game->player.pos_x = 2.0;
 	game->player.pos_y = 2.0;
-	game->player.dir_x = 1.0;
-	game->player.dir_y = 0.0;
-	game->player.plane_x = 0.0;
-	game->player.plane_y = -0.66;
-	game->player.up = 0;
-	game->player.down = 0;
-	game->player.left = 0;
-	game->player.right = 0;
-	game->player.r_left = 0;
-	game->player.r_right = 0;
-	game->player.mr_left = 0;
-	game->player.mr_right = 0;
+	if (game->parsing.direction == 'N')
+	{
+		game->player.dir_x = -1.0;
+		game->player.dir_y = 0.0;
+		game->player.plane_x = 0.0;
+		game->player.plane_y = 0.66;
+	}
+	if (game->parsing.direction == 'S')
+	{
+		game->player.dir_x = 1.0;
+		game->player.dir_y = 0.0;
+		game->player.plane_x = 0.0;
+		game->player.plane_y = -0.66;
+	}
+	if (game->parsing.direction == 'E')
+	{
+		game->player.dir_x = 0.0;
+		game->player.dir_y = 1.0;
+		game->player.plane_x = 0.66;
+		game->player.plane_y = 0.0;
+	}
+	if (game->parsing.direction == 'W')
+	{
+		game->player.dir_x = 0.0;
+		game->player.dir_y = -1.0;
+		game->player.plane_x = -0.66;
+		game->player.plane_y = 0.0;
+	}
 }
-
-/*
-if char[i][j] = N
-player->pos_x = i;
-player->pos_y = j;
-
-if pos_player = N
-	game->player.dir_x = -1.0;
-	game->player.dir_y = 0.0;
-	game->player.plane_x = 0.0;
-	game->player.plane_y = 0.66;
-if pos_player = S
-	game->player.dir_x = 1.0;
-	game->player.dir_y = 0.0;
-	game->player.plane_x = 0.0;
-	game->player.plane_y = -0.66;
-if pos_player = E
-	game->player.dir_x = 0.0;
-	game->player.dir_y = 1.0;
-	game->player.plane_x = 0.66;
-	game->player.plane_y = 0.0;
-if pos_player = W
-	game->player.dir_x = 0.0;
-	game->player.dir_y = -1.0;
-	game->player.plane_x = -0.66;
-	game->player.plane_y = 0.0;
-*/
-
 int	init_game(t_game *game)
 {
 	if (init_map(game) == -1)
@@ -150,7 +155,7 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	ft_memset(&game, 0, sizeof(t_game)); // initialise toutes les structures a 0 
-	if (main_parser(argc, argv, &game) == ERROR) // mon parser
+	if (main_parser(argc, argv, &game) == ERROR) // mon parsing
 	{
 		ft_free_all(&game);
 		return (1);	

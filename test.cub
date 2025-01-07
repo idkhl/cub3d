@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO /home/samy/42/CUB_PUSH/textures/bluestone.xpm
+SO /home/samy/42/CUB_PUSH/textures//eagle.xpm
+WE /home/samy/42/CUB_PUSH/textures//purplestone.xpm
+EA /home/samy/42/CUB_PUSH/textures//redbrick.xpm
 
 F 	 	 	 	 	220,100,0   	 	
 C 				  225,30,0 		 	 	
@@ -16,7 +16,7 @@ C 				  225,30,0
 11110111111111011100000010001
 11110111111111011101010010001
 11000000110101011100000010001
-100000000000000011000S0010001
+100000000000000011000N0010001
 10000000000000001101010010001
 110000011101010111110111100111
 11110111 1110101 101111010001
