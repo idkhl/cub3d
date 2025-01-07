@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:29:06 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/06 19:07:18 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/07 09:40:05 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ void	mnmp_draw_floor(t_game *game, int dx, int dy)
 				dx = 0;
 				while (dx < game->minimap.scale)
 				{
-					if (game->map.map[y][x] == 0)
+					if (is_pos_player(game->map.map[y][x]))
+					{
 						put_pixel(game, x * game->minimap.scale + dx, \
 						y * game->minimap.scale + dy, rgb(207, 207, 207));
+					}
 					dx++;
 				}
 				dy++;
@@ -42,10 +44,11 @@ void	mnmp_draw_floor(t_game *game, int dx, int dy)
 	}
 }
 
+
 void	mnmp_draw_walls(t_game *game, int dx, int dy)
 {
-	int	x;
 	int	y;
+	int	x;
 
 	y = 0;
 	while (y < game->map.map_h)
@@ -59,10 +62,11 @@ void	mnmp_draw_walls(t_game *game, int dx, int dy)
 				dx = 0;
 				while (dx < game->minimap.scale)
 				{
-					if (game->map.map[y][x] != 0)
-						put_pixel(game, x * game->minimap.scale + \
-						dx, y * game->minimap.scale + dy, \
-						rgb(48, 24, 24));
+					if (game->map.map[y][x] == '1')
+					{
+						put_pixel(game, x * game->minimap.scale + dx, \
+						y * game->minimap.scale + dy, rgb(48, 24, 24));
+					}
 					dx++;
 				}
 				dy++;
@@ -72,6 +76,7 @@ void	mnmp_draw_walls(t_game *game, int dx, int dy)
 		y++;
 	}
 }
+
 
 int	min(int a, int b)
 {
@@ -111,7 +116,7 @@ void	minimap(t_game *game)
 
 	dx = 0;
 	dy = 0;
-	minimap_size = 228;
+	minimap_size = 428; // 228 
 	game->minimap.scale = min(minimap_size / game->map.map_w,\
 	minimap_size / game->map.map_h);
 	game->minimap.minimap = mlx_new_image(game->mlx, game->map.map_w, \

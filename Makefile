@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/24 17:14:00 by idakhlao          #+#    #+#              #
-#    Updated: 2025/01/06 18:44:38 by sben-tay         ###   ########.fr        #
+#    Updated: 2025/01/07 09:14:40 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ BUILD = builder/
 
 #=================================================__SRC__OF__PROJECT__=============================================================================
 SRC := src/main.c src/ft_free_all.c \
-	$(addprefix $(EXEC), raycasting.c raycasting_utils.c calc.c movement.c texture.c handle_keys.c minimap.c) \
+	$(addprefix $(EXEC), raycasting.c raycasting_utils.c calc.c movement.c texture.c handle_keys.c minimap.c movement_utils.c) \
 	$(addprefix $(GNL), get_next_line.c get_next_line_utils.c) \
 	$(addprefix $(PARS), handle_parsing.c get_fd_in_tab.c get_value_fd.c check_valide_fd.c check_valid_fd_utils.c \
 	check_valid_fd_utils2.c check_valid_fd_utils3.c get_map_in_tab.c check_valid_map.c check_valid_map_utils.c flood_fill.c \

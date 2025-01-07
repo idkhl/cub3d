@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/06 17:53:48 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/07 09:14:11 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	int		map_w; 
+	int		map_w;
 	int		map_h;
-	int		**map;
+	char	**map;
 	double	camera_x;
 	double	raydir_x;
 	double	raydir_y;
@@ -126,8 +126,8 @@ typedef struct s_parsing
 	int			nb_pos; // calcul pas cette variable.
 	int			height_maps; // hauteur de la mini_map 
 	int			lenth_maps; // largeur de la mini_map
-	int			pos_x; // position x du joueur
-	int			pos_y; // position y du joueur
+	double		pos_x; // position x du joueur
+	double		pos_y; // position y du joueur
 	char		direction; // direction du joueur
 }				t_parsing;
 
@@ -173,6 +173,7 @@ int				destroy(t_game *game);
 void			floor_ceiling(t_game *game);
 int				rgb(int r, int g, int b);
 void			put_pixel(t_game *game, int x, int y, int color);
+bool			is_pos_player(char c);
 
 void			minimap(t_game *game);
 

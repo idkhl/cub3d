@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:41 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/07 06:22:43 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/07 09:49:42 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,38 +36,11 @@ int	**allocate_map(t_map *map)
 	return (nmap);
 }
 
-void	fill_map(t_map *map)
-{
-	int temp_map[10][20] = {
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-};
-
-	for (int y = 0; y < map->map_h; y++)
-		for (int x = 0; x < map->map_w; x++)
-			map->map[y][x] = temp_map[y][x];
-}
-
 int	init_map(t_game *game)
 {
-	// ft_memset(&game->map, 0, sizeof(t_map));
-	game->map.map_w = 20;
-	game->map.map_h = 10;
-	game->map.map = allocate_map(&game->map);
-	if (!game->map.map)
-	{
-		exit(EXIT_FAILURE);
-		return (-1);
-	}
-	fill_map(&game->map);
+	game->map.map_w = game->parsing.lenth_maps;
+	game->map.map_h = game->parsing.height_maps;
+	game->map.map = game->parsing.map;
 	return (0);
 }
 
@@ -89,27 +62,10 @@ int	init_image(t_game *game)
 	return (0);
 }
 
-// void	init_player(t_game *game)
-// {
-// 	game->player.pos_x = 2.0;
-// 	game->player.pos_y = 2.0;
-// 	game->player.dir_x = 1.0;
-// 	game->player.dir_y = 0.0;
-// 	game->player.plane_x = 0.0;
-// 	game->player.plane_y = -0.66;
-// 	game->player.up = 0;
-// 	game->player.down = 0;
-// 	game->player.left = 0;
-// 	game->player.right = 0;
-// 	game->player.r_left = 0;
-// 	game->player.r_right = 0;
-// 	game->player.mr_left = 0;
-// 	game->player.mr_right = 0;
-// }
 void	init_player(t_game *game)
 {
-	game->player.pos_x = 2.0;
-	game->player.pos_y = 2.0;
+	game->player.pos_x = game->parsing.pos_x;
+	game->player.pos_y = game->parsing.pos_y;
 	if (game->parsing.direction == 'N')
 	{
 		game->player.dir_x = -1.0;
@@ -139,6 +95,7 @@ void	init_player(t_game *game)
 		game->player.plane_y = 0.0;
 	}
 }
+
 int	init_game(t_game *game)
 {
 	if (init_map(game) == -1)
@@ -154,7 +111,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	ft_memset(&game, 0, sizeof(t_game)); // initialise toutes les structures a 0 
+	ft_memset(&game, 0, sizeof(t_game));
 	if (main_parser(argc, argv, &game) == ERROR) // mon parsing
 	{
 		ft_free_all(&game);

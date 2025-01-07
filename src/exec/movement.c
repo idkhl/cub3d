@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:27:37 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/06 19:07:22 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/07 09:15:17 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@ void	up_down(t_game *game, double movespeed)
 {
 	if (game->player.up == 1)
 	{
-		if (game->map.map[(int)(game->player.pos_x \
-		+ game->player.dir_x * movespeed)][(int)(game->player.pos_y)] == 0) //remplacer par == '0' pour char**
+		if (is_pos_player(game->map.map[(int)(game->player.pos_x \
+		+ game->player.dir_x * movespeed)][(int)(game->player.pos_y)])) //remplacer par == '0' pour char**
 			game->player.pos_x += game->player.dir_x * movespeed;
-		if (game->map.map[(int)(game->player.pos_x)][(int)(game->player.pos_y \
-		+ game->player.dir_y * movespeed)] == 0) //pareil
+		if (is_pos_player(game->map.map[(int)(game->player.pos_x)][(int)(game->player.pos_y \
+		+ game->player.dir_y * movespeed)])) //pareil
 			game->player.pos_y += game->player.dir_y * movespeed;
 	}
 	if (game->player.down == 1)
 	{
-		if (game->map.map[(int)(game->player.pos_x - game->player.dir_x \
-		* movespeed)][(int)(game->player.pos_y)] == 0) //pareil
+		if (is_pos_player(game->map.map[(int)(game->player.pos_x - game->player.dir_x \
+		* movespeed)][(int)(game->player.pos_y)])) //pareil
 			game->player.pos_x -= game->player.dir_x * movespeed;
-		if (game->map.map[(int)(game->player.pos_x)][(int)(game->player.pos_y \
-		- game->player.dir_y * movespeed)] == 0) //pareil
+		if (is_pos_player(game->map.map[(int)(game->player.pos_x)][(int)(game->player.pos_y \
+		- game->player.dir_y * movespeed)])) //pareil
 			game->player.pos_y -= game->player.dir_y * movespeed;
 	}
 }
@@ -38,20 +38,20 @@ void	right_left(t_game *game, double movespeed)
 {
 	if (game->player.right == 1)
 	{
-		if (game->map.map[(int)(game->player.pos_x + game->player.dir_y \
-		* (movespeed * 2))][(int)game->player.pos_y] == 0) //pareil
+		if (is_pos_player(game->map.map[(int)(game->player.pos_x + game->player.dir_y \
+		* (movespeed * 2))][(int)game->player.pos_y])) //pareil
 			game->player.pos_x += game->player.dir_y * movespeed;
-		if (game->map.map[(int)game->player.pos_x][(int)(game->player.pos_y \
-		- game->player.dir_x * (movespeed * 2))] == 0) //pareil
+		if (is_pos_player(game->map.map[(int)game->player.pos_x][(int)(game->player.pos_y \
+		- game->player.dir_x * (movespeed * 2))])) //pareil
 			game->player.pos_y -= game->player.dir_x * movespeed;
 	}
 	if (game->player.left == 1)
 	{
-		if (game->map.map[(int)(game->player.pos_x - game->player.dir_y \
-		* (movespeed * 2))][(int)game->player.pos_y] == 0) //pareil
+		if (is_pos_player(game->map.map[(int)(game->player.pos_x - game->player.dir_y \
+		* (movespeed * 2))][(int)game->player.pos_y])) //pareil
 			game->player.pos_x -= game->player.dir_y * movespeed;
-		if (game->map.map[(int)game->player.pos_x][(int)(game->player.pos_y \
-		+ game->player.dir_x * (movespeed * 2))] == 0) //pareil
+		if (is_pos_player(game->map.map[(int)game->player.pos_x][(int)(game->player.pos_y \
+		+ game->player.dir_x * (movespeed * 2))])) //pareil
 			game->player.pos_y += game->player.dir_x * movespeed;
 	}
 }
@@ -113,7 +113,7 @@ void	handle_movement(t_game *game)
 	int		x;
 
 	movespeed = 0.08;
-	rotspeed = 0.017;
+	rotspeed = 0.025;
 	mlx_mouse_get_pos(game->mlx, game->win, &game->mouse_x, &game->mouse_y); //bonus
 	if (game->mouse_x > WIDTH / 2 + 5) //bonus
 		game->player.mr_right = 1;

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:58:38 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/07 05:59:39 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/07 09:05:30 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,6 @@ void	init_raycasting(t_game *game, int x)
 	* game->map.camera_x;
 	game->map.map_x = (int)game->player.pos_x;
 	game->map.map_y = (int)game->player.pos_y;
-	game->map.sidedist_x = 0;
-	game->map.sidedist_y = 0;
-	game->map.deltadist_x = 0;
-	game->map.deltadist_y = 0;
-	game->map.perpwalldist = 0;
-	game->map.step_x = 0;
-	game->map.step_y = 0;
-	game->map.side = 0;
-	game->map.line_height = 0;
-	game->map.draw_start = 0;
-	game->map.draw_end = 0;
-	game->map.tex_num = 0;
-	game->map.wall_x = 0;
-	game->map.tex_x = 0;
-	game->map.tex_y = 0;
-	game->map.step = 0;
-	game->map.tex_pos = 0;
 }
 
 void	get_rays(t_game *game, int x)

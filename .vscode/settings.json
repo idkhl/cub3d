@@ -10,5 +10,8 @@
     "C_Cpp.default.compilerPath": "/usr/bin/cc",
     "C_Cpp.default.cStandard": "c11",
     "C_Cpp.default.cppStandard": "c++17",
-    "C_Cpp.default.intelliSenseMode": "linux-gcc-x64"
+    "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
+    "files.associations": {
+        "cub3d.h": "c"
+    }
 }

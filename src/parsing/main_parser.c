@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 07:00:38 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/07 06:25:14 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/07 08:35:35 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	debbuger(t_game *data)
 	printf("\n");
 	printf("=========== VALUE FOR EXEC ============\n");
 	printf("\n");
-	printf("pos_x: %d\n", data->parsing.pos_x);
-	printf("pos_y: %d\n", data->parsing.pos_y);
+	printf("pos_x: %f\n", data->parsing.pos_x);
+	printf("pos_y: %f\n", data->parsing.pos_y);
 	printf("height_maps: %d\n", data->parsing.height_maps);
 	printf("lenth_maps: %d\n", data->parsing.lenth_maps);
 	printf("direction: %c\n", data->parsing.direction);
