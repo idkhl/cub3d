@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:49:40 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/09 10:26:17 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/09 10:58:14 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,7 @@ static void	ft_free_parsing(t_game *data)
 
 static void	ft_free_exec(t_game *data)
 {
-	if (data->textures[0].img_data)
-		mlx_destroy_image(data->mlx, data->textures[0].img_data);
-	if (data->textures[1].img_data)
-		mlx_destroy_image(data->mlx, data->textures[1].img_data);
-	if (data->textures[2].img_data)
-		mlx_destroy_image(data->mlx, data->textures[2].img_data);
-	if (data->textures[3].img_data)
-		mlx_destroy_image(data->mlx, data->textures[3].img_data);
+	destroy_images_textures(data);
 	if (data->img)
 		mlx_destroy_image(data->mlx, data->img);
 	if (data->win && data->mlx)

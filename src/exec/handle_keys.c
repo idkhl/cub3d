@@ -6,13 +6,13 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 13:32:22 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/07 18:42:47 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/09 10:57:24 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	destroy_images(t_game *game)
+void	destroy_images_textures(t_game *game)
 {
 	int	i;
 
@@ -25,16 +25,10 @@ void	destroy_images(t_game *game)
 	}
 }
 
-int	destroy(t_game *game)
-{
-	ft_free_all(game);
-	exit(EXIT_SUCCESS);
-}
-
 int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape)
-		destroy(game);
+		ft_free_all(game);
 	if (keysym == XK_w)
 		game->player.up = 1;
 	if (keysym == XK_s)

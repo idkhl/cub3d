@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/09 07:17:17 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/09 10:57:56 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,10 +171,10 @@ void			dda_loop(t_game *game);
 void			ray_calc(t_game *game);
 void			ray_calc2(t_game *game);
 void			get_textures(t_game *game, int x);
-void			init_textures(t_game *game);
+int				init_textures_wall(t_game *game);
 int				handle_keyrelease(int keysym, t_game *game);
 int				handle_keypress(int keysym, t_game *game);
-int				destroy(t_game *game);
+void			destroy_images_textures(t_game *game);
 
 //////////////////////////////////////////////////////////////////
 //                          UTILS							   //
