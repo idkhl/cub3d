@@ -1,7 +1,7 @@
-NO /home/samy/42/CUB_PUSH/textures/bluestone.xpm
-SO /home/samy/42/CUB_PUSH/textures//eagle.xpm
-WE /home/samy/42/CUB_PUSH/textures//purplestone.xpm
-EA /home/samy/42/CUB_PUSH/textures//redbrick.xpm
+NO ./textures/bluestone.xpm
+SO ./textures//eagle.xpm
+WE ./textures//purplestone.xpm
+EA ./textures//redbrick.xpm
 
 F 	 	 	 	 	220,100,0   	 	
 C 				  225,30,0 		 	 	
