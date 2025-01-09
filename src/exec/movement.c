@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:27:37 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/09 10:20:01 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/09 11:09:21 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	up_down(t_game *game, double movespeed);
 void	right_left(t_game *game, double movespeed);
+void	rotate(t_game *game, double rotspeed, int x);
 void	rotate_right(t_game *game, double olddirx, double oldplane, \
 		double rotspeed);
-void	rotate(t_game *game, double rotspeed, int x);
 
 void	handle_movement(t_game *game)
 {

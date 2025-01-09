@@ -3,9 +3,8 @@ SO ./textures/ekko-et-powder-troll.xpm
 WE ./textures/ekko-end.xpm
 EA ./textures/ekko-et-powder-qui-dance.xpm
 
-F 	 	 	 	 	220,100,0   	 	
-C 				  225,30,0 		 	 	
-
+F 	 	 	 	 	128,128,128
+C 				  255,69,0
 
 1111111111111111111111111111111111111111
 10000000000000000000000000000000000S0001

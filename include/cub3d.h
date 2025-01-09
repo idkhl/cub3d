@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/09 10:57:56 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/09 11:22:14 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,10 @@
 # include "ft_printf.h"
 # include "libft.h"
 
-
 # define WIDTH 1920
 # define HEIGHT 1080
 # define ERROR 1
 # define SUCCESS 0
-
 
 typedef struct s_player
 {

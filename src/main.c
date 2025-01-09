@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:41 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/09 10:53:22 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/09 11:09:35 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int argc, char **argv)
 	}
 	mlx_hook(game.win, KeyPress, KeyPressMask, &handle_keypress, &game);
 	mlx_hook(game.win, 17, 0, &ft_free_all, &game);
-	// mlx_mouse_move(game.mlx, game.win, WIDTH / 2, HEIGHT / 2);
-	// mlx_mouse_hide(game.mlx, game.win);
+	mlx_mouse_move(game.mlx, game.win, WIDTH / 2, HEIGHT / 2);
+	mlx_mouse_hide(game.mlx, game.win);
 	mlx_loop_hook(game.mlx, raycasting, &game);
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &game);
 	mlx_loop(game.mlx);

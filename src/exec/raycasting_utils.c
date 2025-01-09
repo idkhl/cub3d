@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 15:52:08 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/07 09:24:57 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/09 11:09:45 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,27 +47,27 @@ void	put_pixel(t_game *game, int x, int y, int color)
 
 void	floor_ceiling(t_game *game)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < HEIGHT / 2)
 	{
-		j = 0;
-		while (j < WIDTH)
+		j = -1;
+		while (++j < WIDTH)
 		{
-			put_pixel(game, j, i, rgb(135, 175, 226));
-			j++;
+			put_pixel(game, j, i, rgb(game->parsing.r_c, game->parsing.g_c, \
+					game->parsing.b_c));
 		}
 		i++;
 	}
 	while (i < HEIGHT)
 	{
-		j = 0;
-		while (j < WIDTH)
+		j = -1;
+		while (++j < WIDTH)
 		{
-			put_pixel(game, j, i, rgb(66, 58, 51));
-			j++;
+			put_pixel(game, j, i, rgb(game->parsing.r_f, game->parsing.g_f, \
+					game->parsing.b_f));
 		}
 		i++;
 	}
