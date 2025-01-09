@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/24 17:14:00 by idakhlao          #+#    #+#              #
-#    Updated: 2025/01/07 17:26:19 by sben-tay         ###   ########.fr        #
+#    Updated: 2025/01/09 07:08:03 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,11 +100,11 @@ $(NAME): $(OBJ)
 #=============================================================================================
 
 %.o:%.c
-	@$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(BUILD)%.o: %.c $(HEADER)
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -c $< -o $@ -MMD -MP
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ -MMD -MP
 
 
 
