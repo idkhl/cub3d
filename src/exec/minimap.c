@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:29:06 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/07 09:40:05 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/09 10:33:21 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	mnmp_draw_floor(t_game *game, int dx, int dy)
 	int	y;
 	int	x;
 
-	y = 0;
-	while (y < game->map.map_h)
+	y = -1;
+	while (++y < game->map.map_h)
 	{
-		x = 0;
-		while (x < game->map.map_w)
+		x = -1;
+		while (++x < game->map.map_w)
 		{
-			dy = 0;
-			while (dy < game->minimap.scale)
+			dy = -1;
+			while (++dy < game->minimap.scale)
 			{
 				dx = 0;
 				while (dx < game->minimap.scale)
@@ -36,47 +36,38 @@ void	mnmp_draw_floor(t_game *game, int dx, int dy)
 					}
 					dx++;
 				}
-				dy++;
 			}
-			x++;
 		}
-		y++;
 	}
 }
-
 
 void	mnmp_draw_walls(t_game *game, int dx, int dy)
 {
 	int	y;
 	int	x;
 
-	y = 0;
-	while (y < game->map.map_h)
+	y = -1;
+	while (++y < game->map.map_h)
 	{
-		x = 0;
-		while (x < game->map.map_w)
+		x = -1;
+		while (++x < game->map.map_w)
 		{
-			dy = 0;
-			while (dy < game->minimap.scale)
+			dy = -1;
+			while (++dy < game->minimap.scale)
 			{
-				dx = 0;
-				while (dx < game->minimap.scale)
+				dx = -1;
+				while (++dx < game->minimap.scale)
 				{
 					if (game->map.map[y][x] == '1')
 					{
 						put_pixel(game, x * game->minimap.scale + dx, \
 						y * game->minimap.scale + dy, rgb(48, 24, 24));
 					}
-					dx++;
 				}
-				dy++;
 			}
-			x++;
 		}
-		y++;
 	}
 }
-
 
 int	min(int a, int b)
 {
@@ -116,8 +107,8 @@ void	minimap(t_game *game)
 
 	dx = 0;
 	dy = 0;
-	minimap_size = 428; // 228 
-	game->minimap.scale = min(minimap_size / game->map.map_w,\
+	minimap_size = 428;
+	game->minimap.scale = min(minimap_size / game->map.map_w, \
 	minimap_size / game->map.map_h);
 	game->minimap.minimap = mlx_new_image(game->mlx, game->map.map_w, \
 	game->map.map_w);

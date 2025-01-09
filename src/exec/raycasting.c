@@ -6,12 +6,11 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:58:38 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/07 10:07:46 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/09 10:27:21 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	init_raycasting(t_game *game, int x)
 {
@@ -44,11 +43,11 @@ int	raycasting(t_game *game)
 		get_rays(game, x);
 		x++;
 	}
-	minimap(game); // bonus
+	minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	handle_movement(game);
 	mlx_destroy_image(game->mlx, game->img);
-	mlx_destroy_image(game->mlx, game->minimap.minimap); //bonus
+	mlx_destroy_image(game->mlx, game->minimap.minimap);
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (!game->img)
 		return (printf("Error\nImage fail\n"), -1);

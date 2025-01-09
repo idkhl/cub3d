@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:22:43 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/07 09:06:38 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/09 10:26:56 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	dda_loop(t_game *game)
 			game->map.map_y += game->map.step_y;
 			game->map.side = 1;
 		}
-		if (game->map.map[game->map.map_x][game->map.map_y] == '1') // changer ici pour char **
+		if (game->map.map[game->map.map_x][game->map.map_y] == '1')
 			hit = 1;
 	}
 }
