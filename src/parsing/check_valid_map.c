@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 06:42:27 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/07 06:25:03 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/09 10:24:04 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_valid_map(t_game *data)
 		return (ERROR);
 	if (flood_fill_map_and_island(data) == ERROR)
 		return (ERROR);
-	// replace_space_by_set(data->parsing.map, '1');
+	replace_space_by_set(data->parsing.map, '1');
 	if (get_size_map(data) == ERROR)
 		return (ERROR);
 	if (data->parsing.nb_pos == 0)
@@ -58,4 +58,3 @@ static int	get_size_map(t_game *data)
 	}
 	return (SUCCESS);
 }
-

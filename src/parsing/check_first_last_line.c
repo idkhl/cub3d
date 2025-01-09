@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 13:25:44 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/06 17:14:54 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/09 10:22:14 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	check_first_last_line(t_game *data)
 	{
 		if (!is_good_char(data->parsing.map[0][j]))
 		{
-			printf("ici ?\n");
 			return (ft_putendl_fd("Error\nMap is not closed.", 2), ERROR);
 		}
 		j++;
@@ -37,7 +36,6 @@ int	check_first_last_line(t_game *data)
 	{
 		if (!is_good_char(data->parsing.map[i - 1][j]))
 		{
-			printf("ici ?\n");
 			return (ft_putendl_fd("Error\nMap is not closed.", 2), ERROR);
 		}
 		j++;
