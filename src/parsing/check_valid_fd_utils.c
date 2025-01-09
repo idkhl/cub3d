@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 09:54:25 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/06 17:14:54 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/09 10:10:51 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ int	check_no(t_game *data)
 			while (data->file[i][j] && ft_isspace(data->file[i][j]))
 				j++;
 			if (data->file[i][j] == '\0' || data->file[i][j] == '\n')
-				return (ft_putendl_fd("Error\nCUB3D : NO path is missing.", 2),
+				return (ft_putendl_fd("Error\nNO path is missing.", 2),
 					ERROR);
 			if (ft_strchr(data->file[i], '/') == NULL)
-				return (ft_putendl_fd("Error\nCUB3D : NO path is missing.", 2),
+				return (ft_putendl_fd("Error\nNO path is missing.", 2),
 					ERROR);
 			return (SUCCESS);
 		}
 		i++;
 	}
-	return (ft_putendl_fd("Error\nCUB3D : param NO not found.", 2), ERROR);
+	return (ft_putendl_fd("Error\nparam NO not found.", 2), ERROR);
 }
 
 int	check_so(t_game *data)
@@ -72,7 +72,7 @@ int	check_so(t_game *data)
 		}
 		i++;
 	}
-	return (ft_putendl_fd("Error\nCUB3D : param SO not found.", 2), ERROR);
+	return (ft_putendl_fd("Error\nParam SO not found.", 2), ERROR);
 }
 
 int	check_we(t_game *data)
@@ -99,7 +99,7 @@ int	check_we(t_game *data)
 		}
 		i++;
 	}
-	return (ft_putendl_fd("Error\nCUB3D : param WE not found.", 2), ERROR);
+	return (ft_putendl_fd("Error\nParam WE not found.", 2), ERROR);
 }
 
 int	check_ea(t_game *data)

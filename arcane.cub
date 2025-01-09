@@ -1,7 +1,7 @@
-NO /home/samy/42/CUB_PUSH/textures/ekko_alone.xpm
-SO /home/samy/42/CUB_PUSH/textures/ekko-et-powder-troll.xpm
-WE /home/samy/42/CUB_PUSH/textures/ekko-end.xpm
-EA /home/samy/42/CUB_PUSH/textures/ekko-et-powder-qui-dance.xpm
+NO ./textures/ekko_alone.xpm
+SO ./textures/ekko-et-powder-troll.xpm
+WE ./textures/ekko-end.xpm
+EA ./textures/ekko-et-powder-qui-dance.xpm
 
 F 	 	 	 	 	220,100,0   	 	
 C 				  225,30,0 		 	 	
