@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 06:42:27 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/12 14:42:10 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/12 14:59:45 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int	check_map_size(char **map)
 
 	if (map_w * map_h > MAX_STACK_SIZE)
 	{
-		ft_putendl_fd("Error\nMap too large for stack-based floodfill. \
-		\nCare to stack-overflow.", 2);
+		ft_putendl_fd("Error\n[WARNING!] Map too large for stack-based.", 2);
+		ft_putendl_fd("Please, reduce the size of the map.", 2);
 		return (ERROR);
 	}
 	return (SUCCESS);
