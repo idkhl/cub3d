@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:24:28 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/07 18:32:27 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/12 14:28:12 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ static int	check_file_existence(const char *path)
 {
 	int	fd;
 
+	if (ft_strncmp(path + ft_strlen(path) - 4, ".xpm", 4) != 0)
+	{
+		ft_dprintf(2, "Error\nWrong file extension\n");
+		return (ERROR);
+	}
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{

@@ -6,24 +6,11 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 13:32:22 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/09 10:57:24 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/12 14:26:53 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	destroy_images_textures(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		if (game->textures[i].img_data)
-			mlx_destroy_image(game->mlx, game->textures[i].img_data);
-		i++;
-	}
-}
 
 int	handle_keypress(int keysym, t_game *game)
 {
