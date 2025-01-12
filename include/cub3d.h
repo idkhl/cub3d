@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/09 11:22:14 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/12 14:42:22 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+# define MAX_STACK_SIZE 131072
 # define ERROR 1
 # define SUCCESS 0
 
