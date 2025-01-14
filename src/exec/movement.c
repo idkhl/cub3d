@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:27:37 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/09 11:09:21 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:33:11 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,20 @@ void	handle_movement(t_game *game)
 
 	movespeed = 0.08;
 	rotspeed = 0.025;
-	mlx_mouse_get_pos(game->mlx, game->win, &game->mouse_x, &game->mouse_y);
-	if (game->mouse_x > WIDTH / 2 + 5)
-		game->player.mr_right = 1;
-	if (game->mouse_x < WIDTH / 2 - 5)
-		game->player.mr_left = 1;
-	mlx_mouse_move(game->mlx, game->win, WIDTH / 2, HEIGHT / 2);
+	x = 0;
+	if (game->player.mouse == 1)
+	{
+		mlx_mouse_get_pos(game->mlx, game->win, &game->mouse_x, &game->mouse_y);
+		if (game->mouse_x > WIDTH / 2 + 5)
+			game->player.mr_right = 1;
+		if (game->mouse_x < WIDTH / 2 - 5)
+			game->player.mr_left = 1;
+		if (game->player.mouse == 1)
+			mlx_mouse_move(game->mlx, game->win, WIDTH / 2, HEIGHT / 2);
+		x = game->mouse_x;
+	}
 	up_down(game, movespeed);
 	right_left(game, movespeed);
-	x = game->mouse_x;
 	rotate(game, rotspeed, x);
 }
 

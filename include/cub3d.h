@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:52 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/12 14:42:22 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:49:34 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ typedef struct s_player
 	int		right;
 	int		r_left;
 	int		r_right;
-	int		mr_right; //bonus
-	int		mr_left; //bonus
+	int		mr_right;
+	int		mr_left;
+	int		mouse;
 }	t_player;
 
 typedef struct s_map
@@ -97,10 +98,8 @@ typedef struct s_texture
 	char	*addr;
 }	t_texture;
 
-typedef struct s_minimap //bonus
+typedef struct s_minimap
 {
-	// int		minimap_w;
-	// int		minimap_h;
 	void	*minimap;
 	int		bpp;
 	int		size_line;
@@ -111,23 +110,23 @@ typedef struct s_minimap //bonus
 
 typedef struct s_parsing
 {
-	char		*no; // texture nord
-	char		*so; // texture sud
-	char		*we; // texture ouest
-	char		*ea; // texture est
-	int			r_c; // couleur RGB type C
-	int			g_c; // G
-	int			b_c; // B
-	int			r_f; // couleur RGB type F
-	int			g_f; // G
-	int			b_f; // B
-	char		**map; // map
-	int			nb_pos; // calcul pas cette variable.
-	int			height_maps; // hauteur de la mini_map 
-	int			lenth_maps; // largeur de la mini_map
-	double		pos_x; // position x du joueur
-	double		pos_y; // position y du joueur
-	char		direction; // direction du joueur
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	int			r_c;
+	int			g_c;
+	int			b_c;
+	int			r_f;
+	int			g_f;
+	int			b_f;
+	char		**map;
+	int			nb_pos;
+	int			height_maps;
+	int			lenth_maps;
+	double		pos_x;
+	double		pos_y;
+	char		direction;
 }				t_parsing;
 
 typedef struct s_game
@@ -145,8 +144,8 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_texture	textures[4];
-	t_minimap	minimap; //bonus
-	t_parsing	parsing; // tu trouveras ton bonheur dedans
+	t_minimap	minimap;
+	t_parsing	parsing;
 }	t_game;
 
 //////////////////////////////////////////////////////////////////
@@ -157,7 +156,6 @@ int				init_game(t_game *game);
 int				init_player(t_game *game);
 int				init_mlx(t_game *game);
 int				init_textures_wall(t_game *game);
-
 
 //////////////////////////////////////////////////////////////////
 //                        RAYCASTING						   //
@@ -191,7 +189,7 @@ void			minimap(t_game *game);
 
 int				main_parser(int argc, char **argv, t_game *data);
 
-int				handle_parsing(int	argc, char **argv, t_game *data);
+int				handle_parsing(int argc, char **argv, t_game *data);
 int				get_fd_in_tab(char *file, t_game *data);
 int				get_map_in_tab(t_game *data);
 int				get_value_fd(t_game *data);

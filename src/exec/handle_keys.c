@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_keys.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 13:32:22 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/12 14:26:53 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:38:58 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int	handle_keypress(int keysym, t_game *game)
 		game->player.r_left = 1;
 	if (keysym == XK_Right)
 		game->player.r_right = 1;
+	if (keysym == XK_Control_L)
+	{
+		game->player.mouse = 0;
+		mlx_mouse_show(game->mlx, game->win);
+	}
 	return (0);
 }
 
@@ -45,5 +50,10 @@ int	handle_keyrelease(int keysym, t_game *game)
 		game->player.r_left = 0;
 	if (keysym == XK_Right)
 		game->player.r_right = 0;
+	if (keysym == XK_Control_L)
+	{
+		game->player.mouse = 1;
+		mlx_mouse_hide(game->mlx, game->win);
+	}
 	return (0);
 }

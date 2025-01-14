@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 09:59:14 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/07 10:24:53 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:25:30 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ static void	init_pos_west(t_game *data);
 
 int	init_player(t_game *game)
 {
-	game->player.pos_x = game->parsing.pos_x;
-	game->player.pos_y = game->parsing.pos_y;
+	game->player.pos_x = game->parsing.pos_x + 0.5;
+	game->player.pos_y = game->parsing.pos_y + 0.5;
+	game->player.mouse = 1;
 	if (game->parsing.direction == 'N')
 	{
 		init_pos_nord(game);

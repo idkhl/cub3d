@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_valid_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 06:42:27 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/12 14:59:45 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:41:13 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static int	get_size_map(t_game *data);
 int			check_map_size(char **map);
@@ -72,7 +71,6 @@ int	check_map_size(char **map)
 	while (map[map_h])
 		map_h++;
 	map_w = ft_strlen(map[0]);
-
 	if (map_w * map_h > MAX_STACK_SIZE)
 	{
 		ft_putendl_fd("Error\n[WARNING!] Map too large for stack-based.", 2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_all.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:49:40 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/12 14:27:12 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:39:44 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	ft_free_parsing(t_game *data);
 static void	ft_free_exec(t_game *data);
-
 
 int	ft_free_all(t_game *data)
 {
