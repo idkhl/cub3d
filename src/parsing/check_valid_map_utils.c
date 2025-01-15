@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_valid_map_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 06:46:29 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/07 09:12:22 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:51:42 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,12 @@ int	replace_space_by_set(char **str, const char set)
 	while (str[i])
 	{
 		j = 0;
-		while (str[i][j])
+		while (str[i][j] && str[i][j] != '\n')
 		{
 			if (ft_isspace(str[i][j]))
 				str[i][j] = set;
 			j++;
 		}
-		j--;
-		str[i][j] = '\n';
-		j++;
-		str[i][j] = '\0';
 		i++;
 	}
 	return (SUCCESS);

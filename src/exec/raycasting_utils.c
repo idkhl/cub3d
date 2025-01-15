@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 15:52:08 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/09 11:09:45 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:34:25 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	put_pixel(t_game *game, int x, int y, int color)
 
 	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
 	{
-		fprintf(stderr, "Error\nPixel out of bounds: (%d, %d)\n", x, y);
+		ft_dprintf(2, "Error\nPixel out of bounds: (%d, %d)\n", x, y);
 		return ;
 	}
 	dst = game->addr + (y * game->size_line + x * (game->bpp / 8));

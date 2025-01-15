@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_valid_xpm.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:24:28 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/12 14:28:12 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/15 14:55:02 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	check_file_existence(const char *path)
 
 	if (ft_strncmp(path + ft_strlen(path) - 4, ".xpm", 4) != 0)
 	{
-		ft_dprintf(2, "Error\nWrong file extension\n");
+		ft_dprintf(2, "Error\nWrong file extension (.xpm)\n");
 		return (ERROR);
 	}
 	fd = open(path, O_RDONLY);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_value_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:54:39 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/06 17:14:54 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:33:43 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ static int	get_path_wall(t_game *data, char *line)
 		return (SUCCESS);
 	}
 	else if (line[i] == 'E' && line[i + 1] == 'A')
-		return (data->parsing.ea = ft_strtrim_space(line + (i + 2)), (SUCCESS));
+	{
+		data->parsing.ea = ft_strtrim_space(line + (i + 2));
+		return (SUCCESS);
+	}
 	return (SUCCESS);
 }
 

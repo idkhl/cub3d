@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
+#    By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/24 17:14:00 by idakhlao          #+#    #+#              #
-#    Updated: 2025/01/09 07:08:03 by sben-tay         ###   ########.fr        #
+#    Updated: 2025/01/15 13:27:57 by idakhlao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRC := src/main.c src/ft_free_all.c \
 	initializing.c init_img_wall.c init_player.c init_mlx.c) \
 	$(addprefix $(GNL), get_next_line.c get_next_line_utils.c) \
 	$(addprefix $(PARS), handle_parsing.c get_fd_in_tab.c get_value_fd.c check_valide_fd.c check_valid_fd_utils.c \
-	check_valid_fd_utils2.c check_valid_fd_utils3.c get_map_in_tab.c check_valid_map.c check_valid_map_utils.c flood_fill.c \
+	check_valid_fd_utils2.c check_valid_fd_utils3.c check_valid_fd_utils4.c get_map_in_tab.c check_valid_map.c check_valid_map_utils.c flood_fill.c \
 	flood_fill_utils.c check_first_last_line.c main_parser.c check_valid_xpm.c)
 
 

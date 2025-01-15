@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:29:06 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/09 10:33:21 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:51:14 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	mnmp_draw_floor(t_game *game, int dx, int dy)
 	while (++y < game->map.map_h)
 	{
 		x = -1;
-		while (++x < game->map.map_w)
+		while (++x < (int)ft_strlen(game->map.map[y]))
 		{
 			dy = -1;
 			while (++dy < game->minimap.scale)
@@ -50,7 +50,7 @@ void	mnmp_draw_walls(t_game *game, int dx, int dy)
 	while (++y < game->map.map_h)
 	{
 		x = -1;
-		while (++x < game->map.map_w)
+		while (++x < (int)ft_strlen(game->map.map[y]))
 		{
 			dy = -1;
 			while (++dy < game->minimap.scale)

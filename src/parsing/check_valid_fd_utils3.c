@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_valid_fd_utils3.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 15:12:25 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/06 17:14:54 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/15 14:58:08 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ static int	check_and_mark(char **file, int i, int j, bool *dejavu)
 		return (mark_dejavu(dejavu, 2));
 	if (file[i][j] == 'E' && file[i][j + 1] == 'A')
 		return (mark_dejavu(dejavu, 3));
-	if (file[i][j] == 'F' && file[i][j + 1] == ' ')
+	if (file[i][j] == 'F')
 		return (mark_dejavu(dejavu, 4));
-	if (file[i][j] == 'C' && file[i][j + 1] == ' ')
+	if (file[i][j] == 'C')
 		return (mark_dejavu(dejavu, 5));
 	return (SUCCESS);
 }

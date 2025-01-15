@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 08:20:41 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/14 14:40:30 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:34:02 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ bool	flood_fill(char **map, int x, int y, t_game *data)
 	init_pos_e_w(data, map, x, y);
 	if (data->parsing.nb_pos > 1)
 		return (ft_putendl_fd("Error\nToo many starting positions.", 2), 1);
-	if (map[x][y] == '0' || is_pos_char(map[x][y]))
+	if (map[x][y] == '0' || is_pos_char(map[x][y]) || !map[x][y])
 		map[x][y] = '*';
 	if (map[x][y] == ' ' || map[x][y] == '\n' || map[x][y] == '\0')
 		return (ft_putendl_fd("Error\nMap is not closed.", 2), 1);

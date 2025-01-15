@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_in_tab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 16:12:18 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/06 17:14:54 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:35:31 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	get_map_in_tab(t_game *data)
 
 	len = len_map(data);
 	src = first_line(data);
-	data->parsing.map = malloc(sizeof(char *) * (len + 2));
+	data->parsing.map = malloc(sizeof(char *) * (len + 3));
 	if (data->parsing.map == NULL)
 		return (ERROR);
 	i = 0;
@@ -36,7 +36,7 @@ int	get_map_in_tab(t_game *data)
 		src++;
 		i++;
 	}
-	data->parsing.map[i] = NULL;
+	data->parsing.map[i] =  NULL;
 	return (SUCCESS);
 }
 
