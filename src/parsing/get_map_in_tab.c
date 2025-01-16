@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 16:12:18 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/15 17:35:31 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:13:54 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	get_map_in_tab(t_game *data)
 		src++;
 		i++;
 	}
-	data->parsing.map[i] =  NULL;
+	data->parsing.map[i] = NULL;
 	return (SUCCESS);
 }
 

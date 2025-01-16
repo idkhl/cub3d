@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 02:34:55 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/12/30 06:52:15 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:06:47 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 char	*get_next_line(int fd)
 {
 	static t_content	*inventaire = NULL;
-	char			*ligne;
-	int				compteur;
+	char				*ligne;
+	int					compteur;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &ligne, 0) < 0)
 		return (NULL);
@@ -64,7 +64,7 @@ void	lire_et_addlist(int fd, t_content **inventaire, int *compteur)
 
 void	ajouter_a_inventaire(t_content **inventaire, char *buf, int compteur)
 {
-	int		i;
+	int			i;
 	t_content	*last;
 	t_content	*new_node;
 
@@ -128,8 +128,8 @@ void	clean_inventaire(t_content	**inventaire)
 {
 	t_content	*last;
 	t_content	*clean_node;
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 
 	clean_node = malloc(sizeof(t_content));
 	if (clean_node == NULL)

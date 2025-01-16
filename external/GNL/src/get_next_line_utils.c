@@ -16,7 +16,7 @@
 
 int	found_newline(t_content *inventaire)
 {
-	int		i;
+	int			i;
 	t_content	*current;
 
 	if (inventaire == NULL)

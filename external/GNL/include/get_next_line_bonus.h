@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 23:47:28 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/12/28 10:15:57 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:05:56 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,25 @@ typedef struct s_content
 	struct s_content	*next;
 }						t_content;
 
-char	*get_next_line(int fd);
+char		*get_next_line(int fd);
 
-int		found_newline(t_content *inventaire);
+int			found_newline(t_content *inventaire);
 
 t_content	*ft_lst_get_last(t_content *inventaire);
 
-void	lire_et_addlist(int fd, t_content **inventaire, int *compteur);
+void		lire_et_addlist(int fd, t_content **inventaire, int *compteur);
 
-void	ajouter_a_inventaire(t_content **inventaire, char *buf, int compteur);
+void		ajouter_a_inventaire(t_content **inventaire, char *buf, \
+				int compteur);
 
-void	extraire_ligne(t_content *inventaire, char **ligne);
+void		extraire_ligne(t_content *inventaire, char **ligne);
 
-void	malloc_ligne(char **ligne, t_content *inventaire);
+void		malloc_ligne(char **ligne, t_content *inventaire);
 
-void	clean_inventaire(t_content	**inventaire);
+void		clean_inventaire(t_content	**inventaire);
 
-int		ft_strlen(char *str);
+int			ft_strlen(char *str);
 
-void	free_inventaire(t_content *inventaire);
+void		free_inventaire(t_content *inventaire);
 
 #endif

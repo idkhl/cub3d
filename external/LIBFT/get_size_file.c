@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_size_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 06:58:06 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/12/30 12:29:36 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:03:12 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ size_t	get_size_file(char *file)
 	close(fd);
 	return (size);
 }
- 

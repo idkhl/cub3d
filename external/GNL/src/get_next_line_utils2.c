@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 07:40:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/12/28 10:14:34 by sben-tay         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:22:23 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_free_all_(t_content *inventaire, char *ligne)
 		free_inventaire(inventaire);
 	inventaire = NULL;
 	if (ligne)
-		ft_free_((void**)&ligne);
+		ft_free_((void **)&ligne);
 	return (NULL);
 }
 

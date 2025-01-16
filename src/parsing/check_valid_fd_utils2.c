@@ -6,13 +6,13 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 10:12:03 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/15 15:27:53 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:15:00 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static bool check_valid_param(char *str);
+static bool	check_valid_param(char *str);
 
 int	check_f(t_game *data)
 {
@@ -114,9 +114,9 @@ int	check_invalid_param(t_game *data)
 	return (SUCCESS);
 }
 
-static bool check_valid_param(char *str)
+static bool	check_valid_param(char *str)
 {
-		if (*str == '\0')
+	if (*str == '\0')
 		return (true);
 	if (*str == 'N' && !ft_strncmp(str, "NO", 2))
 		return (true);
@@ -128,11 +128,11 @@ static bool check_valid_param(char *str)
 		return (true);
 	if (*str == 'F' && !ft_strncmp(str, "F", 1))
 		return (true);
-	if (*str == 'C'&& !ft_strncmp(str, "C", 1))
+	if (*str == 'C' && !ft_strncmp(str, "C", 1))
 		return (true);
 	if (*str == '1' && !ft_strncmp(str, "1", 1))
 		return (true);
-	if (*str ==  '0' && !ft_strncmp(str, "0", 1))
+	if (*str == '0' && !ft_strncmp(str, "0", 1))
 		return (true);
 	return (false);
 }

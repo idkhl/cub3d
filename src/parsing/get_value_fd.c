@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:54:39 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/15 17:33:43 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:01:00 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ int	get_value_fd(t_game *data)
 
 static int	get_path_wall(t_game *data, char *line)
 {
-	int	i;
-
-	i = 0;
+	int (i) = 0;
 	while (line[i] && ft_isspace(line[i]))
 		i++;
 	if (line[i] == 'N' && line[i + 1] == 'O')

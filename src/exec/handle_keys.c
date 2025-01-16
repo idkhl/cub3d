@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 13:32:22 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/14 14:38:58 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:48:09 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	handle_keypress(int keysym, t_game *game)
 	if (keysym == XK_Control_L)
 	{
 		game->player.mouse = 0;
-		mlx_mouse_show(game->mlx, game->win);
 	}
 	return (0);
 }
+		// mlx_mouse_show(game->mlx, game->win);
 
 int	handle_keyrelease(int keysym, t_game *game)
 {
@@ -53,7 +53,8 @@ int	handle_keyrelease(int keysym, t_game *game)
 	if (keysym == XK_Control_L)
 	{
 		game->player.mouse = 1;
-		mlx_mouse_hide(game->mlx, game->win);
 	}
 	return (0);
 }
+
+		// mlx_mouse_hide(game->mlx, game->win);

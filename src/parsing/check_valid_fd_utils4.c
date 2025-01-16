@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:22:48 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/15 14:53:47 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:15:34 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	check_format_rgb(char *str)
 	if (count != 2)
 		return (ERROR);
 	if (check_supp(str + i) == ERROR)
-				return (ERROR);
-	return (SUCCESS);	
+		return (ERROR);
+	return (SUCCESS);
 }
 
 static int	check_supp(char *str)

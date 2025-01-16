@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 09:58:58 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/15 17:33:04 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:38:09 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static int	init_texture_east(t_game *data);
 
 int	init_textures_wall(t_game *game)
 {
-	game->textures->texture_h = 64;
-	game->textures->texture_w = 64;
+	game->textures->texture_h = 128;
+	game->textures->texture_w = 128;
 	if (init_texture_nord(game) == ERROR)
 		return (ERROR);
 	if (init_texture_south(game) == ERROR)
