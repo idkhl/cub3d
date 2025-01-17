@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 08:20:41 by sben-tay          #+#    #+#             */
-/*   Updated: 2025/01/15 16:34:02 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/17 10:55:30 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ bool	flood_fill(char **map, int x, int y, t_game *data)
 	int	res;
 
 	res = 0;
+	if (map[x][y] == ' ' || map[x][y] == '\n' || map[x][y] == '\0')
+		return (ft_putendl_fd("Error\nMap is not closed.", 2), 1);
 	if (map[x][y] == '1' || map[x][y] == '*')
 		return (0);
 	init_pos_s_n(data, map, x, y);
@@ -55,8 +57,6 @@ bool	flood_fill(char **map, int x, int y, t_game *data)
 		return (ft_putendl_fd("Error\nToo many starting positions.", 2), 1);
 	if (map[x][y] == '0' || is_pos_char(map[x][y]) || !map[x][y])
 		map[x][y] = '*';
-	if (map[x][y] == ' ' || map[x][y] == '\n' || map[x][y] == '\0')
-		return (ft_putendl_fd("Error\nMap is not closed.", 2), 1);
 	res = flood_fill(map, x - 1, y, data);
 	if (res)
 		return (res);

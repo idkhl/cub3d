@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 17:19:41 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/15 18:48:24 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/17 10:50:11 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 	}
 	mlx_hook(game.win, KeyPress, KeyPressMask, &handle_keypress, &game);
 	mlx_hook(game.win, 17, 0, &ft_free_all, &game);
+	mlx_mouse_hide(game.mlx, game.win);
 	if (game.player.mouse == 1)
 		mlx_mouse_move(game.mlx, game.win, WIDTH / 2, HEIGHT / 2);
 	mlx_loop_hook(game.mlx, raycasting, &game);
@@ -37,5 +38,3 @@ int	main(int argc, char **argv)
 	minimap(&game);
 	ft_free_all(&game);
 }
-
-	// mlx_mouse_hide(game.mlx, game.win);

@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:27:37 by idakhlao          #+#    #+#             */
-/*   Updated: 2025/01/14 14:33:11 by idakhlao         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:06:53 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	handle_movement(t_game *game)
 	double	rotspeed;
 	int		x;
 
-	movespeed = 0.08;
+	movespeed = 1;
 	rotspeed = 0.025;
 	x = 0;
 	if (game->player.mouse == 1)
